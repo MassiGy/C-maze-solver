@@ -65,13 +65,9 @@ def generation(colonnes, lignes):
         if combien_visite(visite, pos_mur) == 1:
             res[x][y] = 1
             voisin = voisin_vide(res, pos_mur)
-            print("V: ", voisin)
             diff = diff_vecteur(voisin, pos_mur)
-            print("D: ", diff)
             nouveau_libre_dir = neg_vecteur(diff)
-            print("NLD: ", nouveau_libre_dir)
             nouveau_libre = somme_vecteur(nouveau_libre_dir, pos_mur)
-            print("ND: ", nouveau_libre)
             for voisin in pos_voisins(nouveau_libre, lignes, colonnes):
                 ajouter_murs_unique(murs, voisin, res)
             nlx, nly = nouveau_libre
