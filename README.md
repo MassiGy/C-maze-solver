@@ -22,3 +22,21 @@ L'objectif est de résoudre une instance de labyrinthe.
     * écrire un nouveau générateur de labyrinthe double (2 entrées et 2 sorties).
     * écrire un programme qui devra créer deux joueurs (deux processus) et qui devra résoudre une instance de labyrinthe à deux joueurs. Pour cette première version il n'y a pas de synchronisation à faire.
     * écrire une deuxième version qui devra synchroniser les deux joueurs pour qu'ils passent une porte en même temps. On pensera à modifier le générateur pour qu'il ajoute une porte sur le chemin menant à la sortie.
+
+## Modalités
+
+### Groupes
+
+La travail est à réaliser en binome ou en monome.
+Il est possible de se mettre par trois, mais dans ce cas, la partie bonus devient obligatoire.
+
+### Date de rendu
+
+Le travail est à rendre pour le dimanche 2 Avril à 23h55 sur Eureka.
+
+### Travail à rendre
+
+Vous devrez rendre une archive contant le code commenté.
+Veillez à être précis dans la documentation de votre code.
+Essayez le plus possible de donner des noms de variables et de fonctions correspondant aux tâches qu'elles servent à réaliser.
+Vous devrez également présenter votre travail lors d'une séance de TP en expliquant les différents algorithmes et concepts implémentés.
