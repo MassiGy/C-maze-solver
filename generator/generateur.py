@@ -27,6 +27,30 @@ def ajouter_murs_unique(murs, pos, lab):
 def ligne_sortie(lab):
     return random.choice([i for i, ligne in enumerate(lab) if ligne[-2] == 1])
 
+def voisin_vide(lab, pos):
+    for voisin in pos_voisins(pos, len(lab), len(lab[0])):
+        x, y = voisin
+        if lab[x][y] == 1:
+            return voisin
+        
+def diff_vecteur(u, v):
+    x1, y1 = u
+    x2, y2 = v
+    return [x1 - x2, y1 - y2]
+
+def somme_vecteur(u, v):
+    x1, y1 = u
+    x2, y2 = v
+    return [x1 + x2, y1 + y2]    
+
+def neg_vecteur(u):
+    return [-u[0], -u[1]]
+
+def printLab(lab):
+    for ligne in lab:
+        print("".join(map(str, ligne)))
+
+
 def generation(colonnes, lignes):
     res    = [[0] * colonnes for i in range(lignes)]
     enter  = random.randint(1, lignes - 2), 1
@@ -40,8 +64,19 @@ def generation(colonnes, lignes):
         x, y = pos_mur
         if combien_visite(visite, pos_mur) == 1:
             res[x][y] = 1
-            for voisin in pos_voisins(pos_mur, lignes, colonnes):
+            voisin = voisin_vide(res, pos_mur)
+            print("V: ", voisin)
+            diff = diff_vecteur(voisin, pos_mur)
+            print("D: ", diff)
+            nouveau_libre_dir = neg_vecteur(diff)
+            print("NLD: ", nouveau_libre_dir)
+            nouveau_libre = somme_vecteur(nouveau_libre_dir, pos_mur)
+            print("ND: ", nouveau_libre)
+            for voisin in pos_voisins(nouveau_libre, lignes, colonnes):
                 ajouter_murs_unique(murs, voisin, res)
+            nlx, nly = nouveau_libre
+            visite[nlx][nly] = True
+            res[nlx][nly]    = 1
         visite[x][y] = True
 
     res[enter[0]][enter[1]] = 2
@@ -56,8 +91,7 @@ def generation(colonnes, lignes):
 @click.argument("colonnes", type=int)
 def main(lignes, colonnes):
     lab = generation(colonnes, lignes)
-    for ligne in lab:
-        print("".join(map(str, ligne)))
+    printLab(lab)
 
 if __name__ == "__main__":
     main()
