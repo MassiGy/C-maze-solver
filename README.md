@@ -40,3 +40,13 @@ Vous devrez rendre une archive contant le code commenté.
 Veillez à être précis dans la documentation de votre code.
 Essayez le plus possible de donner des noms de variables et de fonctions correspondant aux tâches qu'elles servent à réaliser.
 Vous devrez également présenter votre travail lors d'une séance de TP en expliquant les différents algorithmes et concepts implémentés.
+
+## Génération de labyrinthe
+
+Pour utiliser le script python générant des instances de labyrinthe, il suffit de lancer la commande suivante :
+
+```sh
+python3 generateur.py [lignes] [colonnes]
+```
+
+où **lignes** et **colonnes** sont respectivement le nombre de lignes et de colonnes que doit contenir l'instance produite par le générateur.
