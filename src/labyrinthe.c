@@ -1,6 +1,7 @@
 #include "labyrinthe.h"
 #include <stdlib.h>
 #include <time.h>
+#include "pile.h"
 
 struct labyrinthe {
     Content *cells;
@@ -25,8 +26,11 @@ static void fill_labyrinthe(Labyrinthe *l) {
     pos_t   pos_entry = ACCESS(1, _entry);
     l -> cells[pos_entry] = VIDE;
 
+    Pile *stack = pile_vide();
+
     
 
+    pile_liberer(stack);
 }
 
 /* Création du labyrinthe */
