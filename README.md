@@ -46,7 +46,7 @@ Vous devrez également présenter votre travail lors d'une séance de TP en expl
 Pour utiliser le script python générant des instances de labyrinthe, il suffit de lancer la commande suivante :
 
 ```sh
-python3 generateur.py [lignes] [colonnes]
+python3 generateur.py [lignes] [colonnes] > dist/maze.txt
 ```
 
 où **lignes** et **colonnes** sont respectivement le nombre de lignes et de colonnes que doit contenir l'instance produite par le générateur.

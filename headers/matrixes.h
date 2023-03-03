@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <assert.h>
+#include "./sys_headers.h"
 
 int **createMatrix(int row_count, int col_count);
 void destroyMatrix(int ***p_matrix, int row_count, int col_count);
