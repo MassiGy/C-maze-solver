@@ -35,19 +35,27 @@ void loadMaze(maze_t *playground)
     /* read the file to populate the grid */
     _file = fopen("../dist/maze.txt", "r");
 
+    /* init a buffer to read the lines */
     char buffer[playground->col_count];
+    /* init a byte to read char by char from the buffer, since atoi take a string, and our string
+    can only be of length 1
+    */
+    char byte[1];
 
     for (int i = 0; i < playground->row_count; i++)
     {
         /* read a line*/
-        fscanf(_file, "%s", &buffer);
+        fscanf(_file, "%s", buffer);
 
         for (int j = 0; j < playground->col_count; j++)
         {
+            byte[0] = buffer[j];
             /* read the int and load them to the matrix */
-            playground->grid[i][j] = atoi(buffer[i]);
+            playground->grid[i][j] = atoi(&(byte[0]));
         }
     }
+
+    fclose(_file);
     return;
 }
 
