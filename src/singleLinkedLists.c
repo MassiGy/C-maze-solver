@@ -107,7 +107,12 @@ struct Node *shift_list(struct Node *head)
 {
     assert(head != NULL);
 
+    struct Node * temp = head;
     head = head->next;
+    
+    free(temp);
+    temp == NULL;
+
     return head;
 }
 

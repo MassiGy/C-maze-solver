@@ -67,8 +67,6 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
 {
     assert(p_playground != NULL);
     assert(*p_visitedNodes != NULL);
-    
-    printf("current_lint = %d, current_col = %d\n", current_line,current_col);
 
     // make sure that we are not into a wall
     if (p_playground->grid[current_line][current_col] == 0)
@@ -98,10 +96,28 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
         copySize = getLength(visitedNodesCopy);
         array = listToArray(visitedNodesCopy, copySize);
 
-        if (liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        bool endReached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
+
+        // destroy the array to prevent memory leaks
+        free(array);
+        array = NULL;
+
+        if (endReached)
         {
+
+            // destroy the previous *p_visitedNodes list to prevent memory leaks
+            destroy_list(*p_visitedNodes);
+            *p_visitedNodes = NULL;
+
+            // change the *p_visitedNodes list to the copy, since this one contains the path to the end
             *p_visitedNodes = visitedNodesCopy;
             return;
+        }
+        else
+        {
+            // destroy the copy if the end is not reached, it will be recreated at the next if statement
+            destroy_list(visitedNodesCopy);
+            visitedNodesCopy = NULL;
         }
     }
 
@@ -113,10 +129,28 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
         copySize = getLength(visitedNodesCopy);
         array = listToArray(visitedNodesCopy, copySize);
 
-        if (liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        bool endReached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
+
+        // destroy the array to prevent memory leaks
+        free(array);
+        array = NULL;
+
+        if (endReached)
         {
+
+            // destroy the previous *p_visitedNodes list to prevent memory leaks
+            destroy_list(*p_visitedNodes);
+            *p_visitedNodes = NULL;
+
+            // change the *p_visitedNodes list to the copy, since this one contains the path to the end
             *p_visitedNodes = visitedNodesCopy;
             return;
+        }
+        else
+        {
+            // destroy the copy if the end is not reached, it will be recreated at the next if statement
+            destroy_list(visitedNodesCopy);
+            visitedNodesCopy = NULL;
         }
     }
 
@@ -128,10 +162,28 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
         copySize = getLength(visitedNodesCopy);
         array = listToArray(visitedNodesCopy, copySize);
 
-        if (liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        bool endReached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
+
+        // destroy the array to prevent memory leaks
+        free(array);
+        array = NULL;
+
+        if (endReached)
         {
+
+            // destroy the previous *p_visitedNodes list to prevent memory leaks
+            destroy_list(*p_visitedNodes);
+            *p_visitedNodes = NULL;
+
+            // change the *p_visitedNodes list to the copy, since this one contains the path to the end
             *p_visitedNodes = visitedNodesCopy;
             return;
+        }
+        else
+        {
+            // destroy the copy if the end is not reached, it will be recreated at the next if statement
+            destroy_list(visitedNodesCopy);
+            visitedNodesCopy = NULL;
         }
     }
 
@@ -143,10 +195,28 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
         copySize = getLength(visitedNodesCopy);
         array = listToArray(visitedNodesCopy, copySize);
 
-        if (liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        bool endReached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
+
+        // destroy the array to prevent memory leaks
+        free(array);
+        array = NULL;
+
+        if (endReached)
         {
+
+            // destroy the previous *p_visitedNodes list to prevent memory leaks
+            destroy_list(*p_visitedNodes);
+            *p_visitedNodes = NULL;
+
+            // change the *p_visitedNodes list to the copy, since this one contains the path to the end
             *p_visitedNodes = visitedNodesCopy;
             return;
+        }
+        else
+        {
+            // destroy the copy if the end is not reached, it will be recreated at the next if statement
+            destroy_list(visitedNodesCopy);
+            visitedNodesCopy = NULL;
         }
     }
 
