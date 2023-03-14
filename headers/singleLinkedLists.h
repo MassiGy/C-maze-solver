@@ -12,7 +12,9 @@ typedef struct Node list_t;
 /*CRUD OPERATIONS*/
 
 void print_list(struct Node *head);
+int  getLength(struct Node * head);
 struct Node *create_node_list(int number);
+struct Node * copy_list(struct Node  * origin);
 struct Node *push_list(struct Node *head, int number);
 struct Node *pop_list(struct Node *head);
 struct Node *unshift_list(struct Node *head, int number);

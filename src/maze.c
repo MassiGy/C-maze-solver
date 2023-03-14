@@ -92,48 +92,74 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int visitedNod
     if (current_line == p_playground->end[0] && current_col == p_playground->end[1])
         return;
 
+    list_t *visitedNodesCopy;
+    int copySize;
+
     if (current_line + 1 <= p_playground->row_count)
     {
-        solveMaze_rec(p_playground, p_visitedNodes, visitedNodesCount + 1, current_line + 1, current_col);
+        visitedNodesCopy = copy_list(*p_visitedNodes);
+        solveMaze_rec(p_playground, &visitedNodesCopy, visitedNodesCount + 1, current_line + 1, current_col);
 
-        /*first make sure that the visitedNodes list does not aleady contain the end*/
-        int *array = listToArray(*p_visitedNodes, visitedNodesCount);
+        /* check if the modified copy containes the end */
+        copySize = getLength(visitedNodesCopy);
+        array = listToArray(visitedNodesCopy, copySize);
 
-        if (liniar_search_array(array, visitedNodesCount, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        if (liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        {
+            p_visitedNodes = &visitedNodesCopy;
             return;
+        }
     }
 
     if (current_line - 1 >= 0)
     {
-        solveMaze_rec(p_playground, p_visitedNodes, visitedNodesCount + 1, current_line - 1, current_col);
 
-        /*first make sure that the visitedNodes list does not aleady contain the end*/
-        int *array = listToArray(*p_visitedNodes, visitedNodesCount);
+        visitedNodesCopy = copy_list(*p_visitedNodes);
+        solveMaze_rec(p_playground, &visitedNodesCopy, visitedNodesCount + 1, current_line - 1, current_col);
 
-        if (liniar_search_array(array, visitedNodesCount, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        /* check if the modified copy containes the end */
+        copySize = getLength(visitedNodesCopy);
+        array = listToArray(visitedNodesCopy, copySize);
+
+        if (liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        {
+            p_visitedNodes = &visitedNodesCopy;
             return;
+        }
     }
 
     if (current_col + 1 <= p_playground->col_count)
     {
-        solveMaze_rec(p_playground, p_visitedNodes, visitedNodesCount + 1, current_line, current_col + 1);
 
-        /*first make sure that the visitedNodes list does not aleady contain the end*/
-        int *array = listToArray(*p_visitedNodes, visitedNodesCount);
+        visitedNodesCopy = copy_list(*p_visitedNodes);
+        solveMaze_rec(p_playground, &visitedNodesCopy, visitedNodesCount + 1, current_line + 1, current_col);
 
-        if (liniar_search_array(array, visitedNodesCount, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        /* check if the modified copy containes the end */
+        copySize = getLength(visitedNodesCopy);
+        array = listToArray(visitedNodesCopy, copySize);
+
+        if (liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        {
+            p_visitedNodes = &visitedNodesCopy;
             return;
+        }
     }
 
     if (current_col - 1 >= 0)
     {
-        solveMaze_rec(p_playground, p_visitedNodes, visitedNodesCount + 1, current_line, current_col - 1);
 
-        /*first make sure that the visitedNodes list does not aleady contain the end*/
-        int *array = listToArray(*p_visitedNodes, visitedNodesCount);
+        visitedNodesCopy = copy_list(*p_visitedNodes);
+        solveMaze_rec(p_playground, &visitedNodesCopy, visitedNodesCount + 1, current_line - 1, current_col);
 
-        if (liniar_search_array(array, visitedNodesCount, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        /* check if the modified copy containes the end */
+        copySize = getLength(visitedNodesCopy);
+        array = listToArray(visitedNodesCopy, copySize);
+
+        if (liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        {
+            p_visitedNodes = &visitedNodesCopy;
             return;
+        }
     }
 
     return;

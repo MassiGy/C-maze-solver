@@ -39,6 +39,42 @@ struct Node *push_list(struct Node *head, int number)
     return head;
 }
 
+struct Node *copy_list(struct Node *origin)
+{
+    assert(origin != NULL);
+
+    struct Node *dest = create_node_list(origin->val);
+
+    struct Node *walker = origin->next;
+
+    while (walker != NULL)
+    {
+        dest = push_list(dest, walker->val);
+        walker = walker->next;
+    }
+
+    return dest;
+}
+
+int getLength(struct Node *head)
+{
+    if (head == NULL)
+        return 0;
+    if (head->next == NULL)
+        return 1;
+
+    struct Node *walker = head;
+    int counter = 1;
+
+    while (walker->next != NULL)
+    {
+        counter++;
+        walker = walker->next;
+    }
+
+    return counter;
+}
+
 struct Node *pop_list(struct Node *head)
 {
 
