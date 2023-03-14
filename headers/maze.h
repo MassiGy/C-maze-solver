@@ -11,6 +11,8 @@ struct maze
 
 typedef struct maze maze_t;
 
+void findStart(maze_t *playground);
+void findEnd(maze_t *playground);
 void loadMaze(maze_t *playground);
 void solveMaze(maze_t *playground);
 void destroyMaze(maze_t **playground);
