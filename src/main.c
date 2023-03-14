@@ -14,11 +14,14 @@ int main(void)
     maze.entry[1] = 1;
     /* set the right coordinates for the escape/end*/
     maze.end[0] = 3;
-    maze.end[0] = 3;
+    maze.end[1] = 3;
+
+    printf("maze.row_count = %d\n", maze.row_count);
+    printf("maze.col_count = %d\n", maze.col_count);
 
     list_t* list = create_node_list(maze.entry[0] * maze.col_count + maze.entry[1]);
 
-    solveMaze_rec(&maze,&list,1,3,1);
+    solveMaze_rec(&maze,&list,3,1);
 
     print_list(list);
 
