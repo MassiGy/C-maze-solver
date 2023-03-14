@@ -1,4 +1,6 @@
 #include "./matrixes.h"
+#include "./arrays.h"
+#include "./singleLinkedLists.h"
 
 struct maze
 {
@@ -11,6 +13,7 @@ struct maze
 
 typedef struct maze maze_t;
 
-void loadMaze(maze_t *playground);
-void solveMaze(maze_t *playground);
-void destroyMaze(maze_t **playground);
+void loadMaze(maze_t *p_playground);
+void solveMaze(maze_t *p_playground);
+void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int visitedNodesCount, int x, int y);
+void destroyMaze(maze_t *p_playground);

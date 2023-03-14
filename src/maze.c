@@ -59,17 +59,90 @@ void loadMaze(maze_t *playground)
     return;
 }
 
-void solveMaze(maze_t *playground);
+void solveMaze(maze_t *p_playground)
+{
+}
 
-void destroyMaze(maze_t **p_playground)
+void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int visitedNodesCount, int current_line, int current_col)
 {
     assert(p_playground != NULL);
-    assert(*p_playground != NULL);
+    assert(*p_visitedNodes != NULL);
 
-    destroyMatrix(&((*p_playground)->grid), (*p_playground)->row_count, (*p_playground)->col_count);
+    /* see if the currrent position is blocked */
+    printf("current_line = %d, current_col = %d\n", current_line, current_col);
+    if (p_playground->grid[current_line][current_col] == 0)
+        return;
 
-    free(*p_playground);
-    *p_playground = NULL;
+    /*first make sure that the visitedNodes list does not aleady contain the end*/
+    int *array = listToArray(*p_visitedNodes, visitedNodesCount);
 
+    if (liniar_search_array(array, visitedNodesCount, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+        return;
+
+    /* second, make sure that the actual node is not already in the list*/
+    if (
+        current_line * p_playground->col_count + current_col != p_playground->entry[0] * p_playground->col_count + p_playground->entry[1] &&
+        liniar_search_array(array, visitedNodesCount, current_line * p_playground->col_count + current_col))
+    {
+        return;
+    }
+
+    *p_visitedNodes = push_list(*p_visitedNodes, current_line * p_playground->col_count + current_col);
+
+    if (current_line == p_playground->end[0] && current_col == p_playground->end[1])
+        return;
+
+    if (current_line + 1 <= p_playground->row_count)
+    {
+        solveMaze_rec(p_playground, p_visitedNodes, visitedNodesCount + 1, current_line + 1, current_col);
+
+        /*first make sure that the visitedNodes list does not aleady contain the end*/
+        int *array = listToArray(*p_visitedNodes, visitedNodesCount);
+
+        if (liniar_search_array(array, visitedNodesCount, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+            return;
+    }
+
+    if (current_line - 1 >= 0)
+    {
+        solveMaze_rec(p_playground, p_visitedNodes, visitedNodesCount + 1, current_line - 1, current_col);
+
+        /*first make sure that the visitedNodes list does not aleady contain the end*/
+        int *array = listToArray(*p_visitedNodes, visitedNodesCount);
+
+        if (liniar_search_array(array, visitedNodesCount, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+            return;
+    }
+
+    if (current_col + 1 <= p_playground->col_count)
+    {
+        solveMaze_rec(p_playground, p_visitedNodes, visitedNodesCount + 1, current_line, current_col + 1);
+
+        /*first make sure that the visitedNodes list does not aleady contain the end*/
+        int *array = listToArray(*p_visitedNodes, visitedNodesCount);
+
+        if (liniar_search_array(array, visitedNodesCount, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+            return;
+    }
+
+    if (current_col - 1 >= 0)
+    {
+        solveMaze_rec(p_playground, p_visitedNodes, visitedNodesCount + 1, current_line, current_col - 1);
+
+        /*first make sure that the visitedNodes list does not aleady contain the end*/
+        int *array = listToArray(*p_visitedNodes, visitedNodesCount);
+
+        if (liniar_search_array(array, visitedNodesCount, p_playground->end[0] * p_playground->col_count + p_playground->end[1]))
+            return;
+    }
+
+    return;
+}
+
+void destroyMaze(maze_t *p_playground)
+{
+    assert(p_playground != NULL);
+
+    destroyMatrix(&(p_playground->grid), p_playground->row_count, p_playground->col_count);
     return;
 }

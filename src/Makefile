@@ -1,5 +1,5 @@
 # liste des fichiers source
-SRC = main.c maze.c matrixes.c
+SRC = main.c maze.c matrixes.c singleLinkedLists.c arrays.c
 #SRC = $(wildcard *.c)
 
 # liste des fichiers .o et des dependances (mis dans le repertoire build/)
