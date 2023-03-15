@@ -17,7 +17,7 @@ struct checkpoint {
     int direction;
     int last_pos;
     bool end_reached;
-    list_t ** possible_ways[4];
+    list_t * possible_ways[4];
 };
 
 
