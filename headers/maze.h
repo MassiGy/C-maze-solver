@@ -18,6 +18,8 @@ struct checkpoint {
     int last_pos;
     bool end_reached;
     list_t * possible_ways[4];
+
+    struct maze * p_maze;
 };
 
 
@@ -26,7 +28,7 @@ typedef struct maze maze_t;
 typedef struct checkpoint checkpoint_t;
 
 
-maze_t maze;
+
 
 
 
@@ -34,6 +36,6 @@ maze_t maze;
 void findStart(maze_t *playground);
 void findEnd(maze_t *playground);
 void loadMaze(maze_t *p_playground);
-void solveMaze(maze_t *p_playground);
 void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_line, int current_col);
+void *solveMaze_threaded(void *checkpoint);
 void destroyMaze(maze_t *p_playground);

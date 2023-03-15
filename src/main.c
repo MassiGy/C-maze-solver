@@ -4,11 +4,12 @@
 
 int main(void)
 {
-
+    maze_t maze;
     loadMaze(&maze);
     printMatrix(&(maze.grid), maze.row_count,maze.col_count);
     findStart(&maze);
     findEnd(&maze);
+
 
     printf("Entrée : ");
     for (int i = 0; i < 2; i++)
@@ -25,18 +26,23 @@ int main(void)
     printf("\n");
 
 
+    checkpoint_t start_checkpoint;
+    start_checkpoint.current_track_record = create_node_list(maze.entry[0] * maze.col_count + maze.entry[1]);
+    start_checkpoint.direction = 0;
+    start_checkpoint.end_reached = false;
+    start_checkpoint.last_pos = maze.entry[0] * maze.col_count + maze.entry[1];
+
+
     
 
-    list_t* list = create_node_list(maze.entry[0] * maze.col_count + maze.entry[1]);
 
-    solveMaze_rec(&maze,&list,maze.entry[0],maze.entry[1]);
+    solveMaze_threaded(&start_checkpoint);
 
-    list = shift_list(list);
 
-    if (getLength(list) >= 1)
+    if (getLength(start_checkpoint.current_track_record) >= 1)
     {
-        print_list(list);
-        list = destroy_list(list);
+        print_list(start_checkpoint.current_track_record);
+        start_checkpoint.current_track_record = destroy_list(start_checkpoint.current_track_record);
     }
 
 

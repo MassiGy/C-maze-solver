@@ -121,6 +121,8 @@ void *solveMaze_threaded(void *checkpoint)
     assert(checkpoint != NULL);
 
     checkpoint_t *current_checkpoint = (checkpoint_t *)checkpoint;
+    maze_t maze = *(current_checkpoint->p_maze);
+
     int current_line = get_line(current_checkpoint->last_pos, maze.col_count);
     int current_col = get_colomn(current_checkpoint->last_pos, maze.col_count);
 
@@ -149,8 +151,14 @@ void *solveMaze_threaded(void *checkpoint)
 
     while (!(current_checkpoint->end_reached))
     {
+        /* reload the currect coordinates each time */
         current_line = get_line(current_checkpoint->last_pos, maze.col_count);
         current_col = get_colomn(current_checkpoint->last_pos, maze.col_count);
+
+        /* make sure that we are not blocked */
+        if(maze.grid[current_line][current_col] == 0) break;
+
+        /* calc the next move to see if any of the possible ways is also the parent way */
         next_move = current_checkpoint->last_pos + current_checkpoint->direction;
 
         /*check for any other possible ways*/
@@ -175,6 +183,8 @@ void *solveMaze_threaded(void *checkpoint)
             up_thread_checkpoint.last_pos = current_line * maze.col_count + current_col;
             /* make sure that the son also goes to search for the end */
             up_thread_checkpoint.end_reached = current_checkpoint->end_reached;
+            /* make sure that the son also gets a refrence to the maze */
+            up_thread_checkpoint.p_maze = &maze;
 
             pthread_create(&up_thread, NULL, &solveMaze_threaded, &up_thread_checkpoint);
         }
@@ -193,7 +203,8 @@ void *solveMaze_threaded(void *checkpoint)
             down_thread_checkpoint.last_pos = current_line * maze.col_count + current_col;
             /* make sure that the son also goes to search for the end */
             down_thread_checkpoint.end_reached = current_checkpoint->end_reached;
-
+            /* make sure that the son also gets a refrence to the maze */
+            down_thread_checkpoint.p_maze = &maze;
             pthread_create(&down_thread, NULL, &solveMaze_threaded, &down_thread_checkpoint);
         }
         if (is_left_possible)
@@ -210,6 +221,8 @@ void *solveMaze_threaded(void *checkpoint)
             left_thread_checkpoint.last_pos = current_line * maze.col_count + current_col;
             /* make sure that the son also goes to search for the end */
             left_thread_checkpoint.end_reached = current_checkpoint->end_reached;
+            /* make sure that the son also gets a refrence to the maze */
+            left_thread_checkpoint.p_maze = &maze;
 
             pthread_create(&left_thread, NULL, &solveMaze_threaded, &left_thread_checkpoint);
         }
@@ -227,6 +240,8 @@ void *solveMaze_threaded(void *checkpoint)
             right_thread_checkpoint.last_pos = current_line * maze.col_count + current_col;
             /* make sure that the son also goes to search for the end */
             right_thread_checkpoint.end_reached = current_checkpoint->end_reached;
+            /* make sure that the son also gets a refrence to the maze */
+            right_thread_checkpoint.p_maze = &maze;
 
             pthread_create(&right_thread, NULL, &solveMaze_threaded, &right_thread_checkpoint);
         }
