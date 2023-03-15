@@ -130,6 +130,8 @@ void *solveMaze_threaded(void *checkpoint)
     // check if the end is reached
     if (current_checkpoint->last_pos == maze.end[0] * maze.col_count + maze.end[1])
     {
+        /*we return null to follow the required signature to use threads, */
+        /** also since we will use the checkpoint struct to get the path, returning null does not bother us.*/
         return NULL;
     }
 
@@ -149,9 +151,9 @@ void *solveMaze_threaded(void *checkpoint)
     {
         current_line = get_line(current_checkpoint->last_pos, maze.col_count);
         current_col = get_colomn(current_checkpoint->last_pos, maze.col_count);
+        next_move = current_checkpoint->last_pos + current_checkpoint->direction;
 
         /*check for any other possible ways*/
-        next_move = current_checkpoint->last_pos + current_checkpoint->direction;
         is_up_possible = can_go_up(current_line, current_col, &maze, current_checkpoint->last_pos, next_move);
         is_down_possible = can_go_down(current_line, current_col, &maze, current_checkpoint->last_pos, next_move);
         is_left_possible = can_go_left(current_line, current_col, &maze, current_checkpoint->last_pos, next_move);
