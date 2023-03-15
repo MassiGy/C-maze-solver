@@ -91,8 +91,47 @@ void loadMaze(maze_t *playground)
     return;
 }
 
-void solveMaze(maze_t *p_playground)
+void * solveMaze_threaded(void*checkpoint)
 {
+    assert(checkpoint != NULL);
+
+    checkpoint_t * current_checkpoint = (checkpoint_t *) checkpoint;
+    
+    // make sure that the parent is on its track record
+    assert(current_checkpoint->current_track_record != NULL);
+
+    // check if the end is reached
+    if(current_checkpoint->last_pos == maze.end[0] * maze.col_count + maze.end[1])
+    {
+
+    }
+    
+
+    while(!current_checkpoint->end_reached)
+    {
+
+        /*check for any other possible ways*/
+        int next_move = current_checkpoint->last_pos + current_checkpoint->direction;
+        bool can_go_up = (current_checkpoint->direction == (-maze.col_count)) &&  next_move >= 0;
+        bool can_go_down =  (current_checkpoint->direction == (maze.col_count)) && (next_move < maze.row_count * maze.col_count);
+        bool can_go_left = (current_checkpoint->direction == (-1)) && next_move >= (current_checkpoint->last_pos / maze.col_count);
+        bool can_go_right = (current_checkpoint->direction == (1)) && next_move <= ((current_checkpoint->last_pos / maze.col_count) + maze.col_count);
+
+        if(current_checkpoint->last_pos )
+
+
+
+
+
+        /*step ahead according to the passed direction*/
+        current_checkpoint
+
+    }
+
+
+
+
+
 }
 
 void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_line, int current_col)

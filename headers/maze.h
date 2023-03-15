@@ -11,7 +11,25 @@ struct maze
     int **grid;
 };
 
+
+struct checkpoint {
+    list_t * current_track_record;
+    int direction;
+    int last_pos;
+    bool end_reached;
+    list_t ** possible_ways[4];
+};
+
+
+
 typedef struct maze maze_t;
+typedef struct checkpoint checkpoint_t;
+
+
+maze_t maze;
+
+
+
 
 void findStart(maze_t *playground);
 void findEnd(maze_t *playground);
