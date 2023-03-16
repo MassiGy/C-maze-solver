@@ -28,8 +28,9 @@ int main(void)
 
     checkpoint_t start_checkpoint;
     start_checkpoint.current_track_record = create_node_list(maze.entry[0] * maze.col_count + maze.entry[1]);
-    start_checkpoint.direction = 0;
+    start_checkpoint.direction = (0);
     start_checkpoint.end_reached = false;
+    start_checkpoint.p_maze = &maze;
     start_checkpoint.last_pos = maze.entry[0] * maze.col_count + maze.entry[1];
 
 
