@@ -1,742 +1,127 @@
 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
-0	1	1	1	0	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	
-0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	
-0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	0	
-0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	1	0	
-0	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	
-0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	
-0	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	0	
-0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	
-0	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	0	
-0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	
-0	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	0	
-0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	
-0	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	
-0	0	0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	
-0	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	0	
-0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	
-0	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	0	
-0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	
-0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	0	1	0	
-0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	
-0	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	0	
-0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	0	0	
-0	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	0	
-0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	
-0	1	0	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	0	
-0	1	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	1	0	
-0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	
-0	1	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	
-0	1	0	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	0	
-0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	
-0	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	
-0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	
-0	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	
-0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	
-0	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	
-0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	
-0	1	1	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	0	
-0	1	0	0	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	
-0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	1	1	1	1	1	1	0	
-0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	
-0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	0	
-0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	1	0	
-0	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	0	
-0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
-0	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	0	
-0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	
-0	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	0	
-0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	
-0	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	0	1	0	
-0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	
-0	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	0	
-0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	1	0	
-0	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	1	1	0	
-0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	
-0	2	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	
-0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	
-0	1	0	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	0	
-0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	
-0	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	0	
-0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	
-0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	
-0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	
-0	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	0	
-0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	1	0	1	0	
-0	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	0	1	0	
-0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	1	0	
-0	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	0	1	1	1	1	1	0	1	1	1	0	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	0	
-0	1	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0	3	0	
-0	1	0	1	0	1	0	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	0	
-0	1	0	1	0	1	0	0	0	0	0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	
-0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	
-0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	
-0	1	1	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	0	
-0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	
-0	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	0	
-0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	0	0	
-0	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	0	
-0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	
-0	1	0	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	
+0	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	
+0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	
+0	2	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	0	
+0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	
+0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	0	1	0	
+0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	3	0	
+0	1	1	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	1	1	0	1	0	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	
+0	1	0	1	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	0	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	0	0	1	0	1	0	0	0	1	0	1	0	1	0	1	0	1	0	0	0	0	0	0	0	0	0	
+0	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	0	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	0	1	0	1	1	1	0	1	0	1	0	1	0	1	0	1	1	1	1	1	1	1	1	1	0	
 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
-Entrée : [55][1]
-Sortie : [68][79]
-can go right
-can go up
-can go down
-can go left
-can go left
-can go up
-can go left
-can go right
-can go up
-can go up
-can go right
-can go left
-can go right
-can go up
-can go down
-can go right
-can go left
-can go right
-can go right
-can go right
-can go down
-can go down
-can go right
-can go right
-can go down
-can go up
-can go right
-can go left
-can go up
-can go left
-can go right
-can go up
-can go down
-can go right
-can go up
-can go left
-can go right
-can go left
-can go right
-can go up
-can go down
-can go right
-can go right
-can go up
-can go left
-can go down
-can go right
-can go left
-can go up
-can go right
-can go down
-can go down
-can go up
-can go down
-can go right
-can go up
-can go left
-can go right
-can go up
-can go up
-can go right
-can go right
-can go up
-can go up
-can go left
-can go up
-can go left
-can go up
-can go right
-can go right
-can go down
-can go left
-can go left
-can go left
-can go up
-can go right
-can go right
-can go down
-can go up
-can go up
-can go left
-can go up
-can go up
-can go down
-can go down
-can go left
-can go right
-can go left
-can go right
-can go right
-can go left
-can go right
-can go right
-can go left
-can go down
-can go right
-can go up
-can go left
-can go right
-can go up
-can go right
-can go up
-can go right
-can go left
-can go right
-can go left
-can go right
-can go right
-can go up
-can go left
-can go down
-can go right
-can go up
-can go right
-can go up
-can go right
-can go up
-can go down
-can go right
-can go right
-can go up
-can go down
-can go up
-can go right
-can go up
-can go down
-can go left
-can go right
-can go right
-can go up
-can go right
-can go up
-can go right
-can go up
-can go right
-can go left
-can go up
-can go right
-can go left
-can go up
-can go up
-can go right
-can go up
-can go up
-can go right
-can go up
-can go right
-can go up
-can go right
-can go up
-can go left
-can go right
-can go up
-can go left
-can go right
-can go up
-can go up
-can go left
-can go left
-can go down
-can go up
-can go left
-can go up
-can go right
-can go right
-can go right
-can go up
-can go right
-can go up
-can go right
-can go up
-can go down
-can go right
-can go up
-can go left
-can go up
-can go right
-can go up
-can go right
-can go up
-can go left
-can go right
-can go up
-can go up
-can go left
-can go right
-can go up
-can go down
-can go left
-can go right
-can go up
-can go down
-can go left
-can go up
-can go up
-can go right
-can go right
-can go up
-can go right
-can go down
-can go down
-can go down
-can go right
-can go up
-can go right
-can go left
-can go up
-can go right
-can go right
-can go down
-can go right
-can go up
-can go right
-can go right
-can go up
-can go right
-can go right
-can go right
-can go left
-can go up
-can go up
-can go right
-can go right
-can go right
-can go right
-can go left
-can go up
-can go down
-can go right
-can go right
-can go down
-can go right
-can go down
-can go down
-can go right
-can go down
-can go right
-can go up
-can go down
-can go right
-can go right
-can go down
-can go right
-can go right
-can go down
-can go right
-can go up
-can go down
-can go right
-can go right
-can go up
-can go down
-can go down
-can go down
-can go left
-can go down
-can go up
-can go right
-can go down
-can go down
-can go right
-can go right
-can go down
-can go up
-can go right
-can go down
-can go right
-can go left
-can go right
-can go down
-can go right
-can go up
-can go left
-can go down
-can go left
-can go up
-can go down
-can go down
-can go up
-can go left
-can go down
-can go right
-can go up
-can go down
-can go right
-can go right
-can go up
-can go right
-can go down
-can go down
-can go right
-can go up
-can go right
-can go up
-can go down
-can go right
-can go left
-can go down
-can go left
-can go right
-can go right
-can go down
-can go down
-can go up
-can go right
-can go right
-can go down
-can go up
-can go right
-can go up
-can go right
-can go down
-can go up
-can go right
-can go left
-can go up
-can go up
-can go down
-can go down
-can go down
-can go right
-can go right
-can go right
-can go right
-can go right
-can go up
-can go up
-can go up
-can go down
-can go left
-can go right
-can go up
-can go down
-can go right
-can go up
-can go down
-can go right
-can go right
-can go right
-can go up
-can go down
-can go right
-can go right
-can go up
-can go up
-can go down
-can go right
-can go right
-can go up
-can go down
-can go up
-can go right
-can go right
-can go down
-can go left
-can go up
-can go right
-can go right
-can go up
-can go down
-can go up
-can go right
-can go up
-can go down
-can go up
-can go right
-can go down
-can go left
-can go up
-can go right
-can go right
-can go left
-can go up
-can go down
-can go right
-can go down
-can go up
-can go down
-can go right
-can go right
-can go right
-can go right
-can go up
-can go down
-can go right
-can go up
-can go down
-can go right
-can go left
-can go up
-can go right
-can go right
-can go right
-can go up
-can go up
-can go up
-can go down
-can go right
-can go down
-can go up
-can go right
-can go right
-can go right
-can go down
-can go up
-can go right
-can go up
-can go right
-can go down
-can go left
-can go right
-can go down
-can go right
-can go right
-can go right
-can go up
-can go down
-can go right
-can go down
-can go right
-can go up
-can go up
-can go right
-can go down
-can go up
-can go left
-can go down
-can go right
-can go left
-can go right
-can go down
-can go down
-can go down
-can go left
-can go right
-can go right
-can go right
-can go up
-can go down
-can go right
-can go up
-can go right
-can go right
-can go up
-can go down
-can go down
-can go right
-can go left
-can go up
-can go up
-can go right
-can go down
-can go down
-can go left
-can go right
-can go down
-can go left
-can go left
-can go right
-can go right
-can go left
-can go up
-can go right
-can go right
-can go up
-can go down
-can go up
-can go right
-can go left
-can go down
-can go right
-can go right
-can go right
-can go down
-can go down
-can go up
-can go down
-can go down
-can go right
-can go down
-can go right
-can go down
-can go down
-can go left
-can go down
-can go up
-can go down
-can go down
-can go right
-can go right
-can go down
-can go down
-can go right
-can go right
-can go down
-can go down
-can go right
-can go up
-can go up
-can go right
-can go up
-can go up
-can go right
-can go left
-can go down
-can go right
-can go right
-can go up
-can go down
-can go down
-can go right
-can go left
-can go up
-can go up
-can go right
-can go left
-can go right
-can go left
-can go up
-can go right
-can go right
-can go down
-can go up
-can go down
-can go right
-can go left
-can go right
-can go down
-can go up
-can go down
-can go left
-can go right
-can go right
-can go up
-can go right
-can go left
-can go up
-can go up
-can go down
-0x7efcf0003000 -> 4456
-0x7efcf0003020 -> 4457
-0x7efcf0003040 -> 4458
-0x7efcf0003060 -> 4459
-0x7efcf0003080 -> 4460
-0x7efcf00030a0 -> 4461
-0x7efcf00030c0 -> 4462
-0x7efcf00030e0 -> 4463
-0x7efcf0003100 -> 4464
-0x7efcf0003120 -> 4545
-0x7efcf0003140 -> 4626
-0x7efcf0003160 -> 4627
-0x7efcf0003180 -> 4628
-0x7efcf00031a0 -> 4629
-0x7efcf00031c0 -> 4630
-0x7efcf00031e0 -> 4631
-0x7efcf0003200 -> 4632
-0x7efcf0003220 -> 4713
-0x7efcf0003240 -> 4794
-0x7efcf0003260 -> 4795
-0x7efcf0003280 -> 4796
-0x7efcf00032a0 -> 4877
-0x7efcf00032c0 -> 4958
-0x7efcf00032e0 -> 4959
-0x7efcf0003300 -> 4960
-0x7efcf0003320 -> 4879
-0x7efcf0003340 -> 4798
-0x7efcf0003360 -> 4799
-0x7efcf0003380 -> 4800
-0x7efcf00033a0 -> 4801
-0x7efcf00033c0 -> 4802
-0x7efcf00033e0 -> 4883
-0x7efcf0003400 -> 4964
-0x7efcf0003420 -> 4965
-0x7efcf0003440 -> 4966
-0x7efcf0003460 -> 4885
-0x7efcf0003480 -> 4804
-0x7efcf00034a0 -> 4805
-0x7efcf00034c0 -> 4806
-0x7efcf00034e0 -> 4807
-0x7efcf0003500 -> 4808
-0x7efcf0003520 -> 4809
-0x7efcf0003540 -> 4810
-0x7efcf0003560 -> 4811
-0x7efcf0003580 -> 4812
-0x7efcf00035a0 -> 4813
-0x7efcf00035c0 -> 4814
-0x7efcf00035e0 -> 4733
-0x7efcf0003600 -> 4652
-0x7efcf0003620 -> 4653
-0x7efcf0003640 -> 4654
-0x7efcf0003660 -> 4573
-0x7efcf0003680 -> 4492
-0x7efcf00036a0 -> 4493
-0x7efcf00036c0 -> 4494
-0x7efcf00036e0 -> 4413
-0x7efcf0003700 -> 4332
-0x7efcf0003720 -> 4333
-0x7efcf0003740 -> 4334
-0x7efcf0003760 -> 4415
-0x7efcf0003780 -> 4496
-0x7efcf00037a0 -> 4497
-0x7efcf00037c0 -> 4498
-0x7efcf00037e0 -> 4417
-0x7efcf0003800 -> 4336
-0x7efcf0003820 -> 4337
-0x7efcf0003840 -> 4338
-0x7efcf0003860 -> 4339
-0x7efcf0003880 -> 4340
-0x7efcf00038a0 -> 4341
-0x7efcf00038c0 -> 4342
-0x7efcf00038e0 -> 4343
-0x7efcf0003900 -> 4344
-0x7efcf0003920 -> 4263
-0x7efcf0003940 -> 4182
-0x7efcf0003960 -> 4183
-0x7efcf0003980 -> 4184
-0x7efcf00039a0 -> 4265
-0x7efcf00039c0 -> 4346
-0x7efcf00039e0 -> 4347
-0x7efcf0003a00 -> 4348
-0x7efcf0003a20 -> 4349
-0x7efcf0003a40 -> 4350
-0x7efcf0003a60 -> 4431
-0x7efcf0003a80 -> 4512
-0x7efcf0003aa0 -> 4513
-0x7efcf0003ac0 -> 4514
-0x7efcf0003ae0 -> 4515
-0x7efcf0003b00 -> 4516
-0x7efcf0003b20 -> 4517
-0x7efcf0003b40 -> 4518
-0x7efcf0003b60 -> 4519
-0x7efcf0003b80 -> 4520
-0x7efcf0003ba0 -> 4521
-0x7efcf0003bc0 -> 4522
-0x7efcf0003be0 -> 4523
-0x7efcf0003c00 -> 4524
-0x7efcf0003c20 -> 4525
-0x7efcf0003c40 -> 4526
-0x7efcf0003c60 -> 4607
-0x7efcf0003c80 -> 4688
-0x7efcf0003ca0 -> 4689
-0x7efcf0003cc0 -> 4690
-0x7efcf0003ce0 -> 4691
-0x7efcf0003d00 -> 4692
-0x7efcf0003d20 -> 4773
-0x7efcf0003d40 -> 4854
-0x7efcf0003d60 -> 4935
-0x7efcf0003d80 -> 5016
-0x7efcf0003da0 -> 5017
-0x7efcf0003dc0 -> 5018
-0x7efcf0003de0 -> 5019
-0x7efcf0003e00 -> 5020
-0x7efcf0003e20 -> 5101
-0x7efcec00c510 -> 5182
-0x7efcec00c530 -> 5263
-0x7efcec00c550 -> 5344
-0x7efcec00c570 -> 5425
-0x7efcec00c590 -> 5506
-0x7efcec00d300 -> 5587
+Entrée : [3][1]
+Sortie : [6][79]
+0x7f5ca0000d50 -> 244
+0x7f5ca0000d30 -> 245
+0x7f5ca0000d10 -> 246
+0x7f5ca0001c60 -> 165
+0x7f5ca0001b80 -> 84
+0x7f5ca0001ba0 -> 85
+0x7f5ca0001bc0 -> 86
+0x7f5ca0001be0 -> 87
+0x7f5ca0001c00 -> 88
+0x7f5ca0001c20 -> 89
+0x7f5ca0001c40 -> 90
+0x7f5ca0001b60 -> 171
+0x7f5ca0001a80 -> 252
+0x7f5ca0001aa0 -> 253
+0x7f5ca0001ac0 -> 254
+0x7f5ca0001ae0 -> 255
+0x7f5ca0001b00 -> 256
+0x7f5ca0001b20 -> 257
+0x7f5ca0001b40 -> 258
+0x7f5ca0001a60 -> 259
+0x7f5ca0001980 -> 260
+0x7f5ca00019a0 -> 261
+0x7f5ca00019c0 -> 262
+0x7f5ca00019e0 -> 343
+0x7f5ca0001a00 -> 424
+0x7f5ca0001a20 -> 425
+0x7f5ca0001a40 -> 426
+0x7f5ca0001960 -> 345
+0x7f5ca0001880 -> 264
+0x7f5ca00018a0 -> 265
+0x7f5ca00018c0 -> 266
+0x7f5ca00018e0 -> 347
+0x7f5ca0001900 -> 428
+0x7f5ca0001920 -> 429
+0x7f5ca0001940 -> 430
+0x7f5ca0001860 -> 349
+0x7f5ca0001780 -> 268
+0x7f5ca00017a0 -> 269
+0x7f5ca00017c0 -> 270
+0x7f5ca00017e0 -> 189
+0x7f5ca0001800 -> 108
+0x7f5ca0001820 -> 109
+0x7f5ca0001840 -> 110
+0x7f5ca0001760 -> 191
+0x7f5ca0001680 -> 272
+0x7f5ca00016a0 -> 273
+0x7f5ca00016c0 -> 274
+0x7f5ca00016e0 -> 275
+0x7f5ca0001700 -> 276
+0x7f5ca0001720 -> 277
+0x7f5ca0001740 -> 278
+0x7f5ca0001660 -> 359
+0x7f5ca0001580 -> 440
+0x7f5ca00015a0 -> 441
+0x7f5ca00015c0 -> 442
+0x7f5ca00015e0 -> 443
+0x7f5ca0001600 -> 444
+0x7f5ca0001620 -> 445
+0x7f5ca0001640 -> 446
+0x7f5ca0001560 -> 447
+0x7f5ca0001480 -> 448
+0x7f5ca00014a0 -> 449
+0x7f5ca00014c0 -> 450
+0x7f5ca00014e0 -> 531
+0x7f5ca0001500 -> 612
+0x7f5ca0001520 -> 613
+0x7f5ca0001540 -> 614
+0x7f5ca0001460 -> 615
+0x7f5ca0001380 -> 616
+0x7f5ca00013a0 -> 617
+0x7f5ca00013c0 -> 618
+0x7f5ca00013e0 -> 619
+0x7f5ca0001400 -> 620
+0x7f5ca0001420 -> 539
+0x7f5ca0001440 -> 458
+0x7f5ca0001360 -> 459
+0x7f5ca0001280 -> 460
+0x7f5ca00012a0 -> 461
+0x7f5ca00012c0 -> 462
+0x7f5ca00012e0 -> 463
+0x7f5ca0001300 -> 464
+0x7f5ca0001320 -> 465
+0x7f5ca0001340 -> 466
+0x7f5ca0001260 -> 385
+0x7f5ca0001180 -> 304
+0x7f5ca00011a0 -> 305
+0x7f5ca00011c0 -> 306
+0x7f5ca00011e0 -> 307
+0x7f5ca0001200 -> 308
+0x7f5ca0001220 -> 309
+0x7f5ca0001240 -> 310
+0x7f5ca0000cf0 -> 391
+0x7f5ca0000c10 -> 472
+0x7f5ca0000c30 -> 473
+0x7f5ca0000c50 -> 474
+0x7f5ca0000c70 -> 393
+0x7f5ca0000c90 -> 312
+0x7f5ca0000cb0 -> 231
+0x7f5ca0000cd0 -> 150
+0x7f5ca0000bf0 -> 151
+0x7f5ca0000b70 -> 152
+0x7f5ca0000b90 -> 153
+0x7f5ca0000bb0 -> 154
+0x7f5ca0000bd0 -> 235
+0x7f5ca0001e50 -> 316
+0x7f5ca0001e70 -> 317
+0x7f5ca0001e90 -> 318
+0x7f5ca0001eb0 -> 319
+0x7f5ca0001ed0 -> 320
+0x7f5ca0001ef0 -> 321
+0x7f5ca0001f10 -> 322
+0x7f5ca0001f30 -> 403
+0x7f5cac000ec0 -> 484
+0x7f5cac000e80 -> 565
