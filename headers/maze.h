@@ -17,8 +17,6 @@ struct checkpoint
     int direction;
     int last_pos;
     bool end_reached;
-    list_t *possible_ways[4];
-
     struct maze *p_maze;
 };
 
@@ -35,8 +33,9 @@ void destroyMaze(maze_t *p_playground);
 /** UTILS */
 int get_line(int el_pos, int maze_col_count);
 int get_colomn(int el_pos, int maze_col_count);
-bool can_go_up(int current_line, int current_col, maze_t *maze, int last_pos, list_t *track_record, int next_move);
-bool can_go_down(int current_line, int current_col, maze_t *maze, int last_pos, list_t *track_record, int next_move);
-bool can_go_right(int current_line, int current_col, maze_t *maze, int last_pos, list_t *track_record, int next_move);
-bool can_go_left(int current_line, int current_col, maze_t *maze, int last_pos, list_t *track_record, int next_move);
+
+bool can_go_up(int current_line, int current_col, maze_t *maze, list_t *track_record);
+bool can_go_down(int current_line, int current_col, maze_t *maze, list_t *track_record);
+bool can_go_right(int current_line, int current_col, maze_t *maze, list_t *track_record);
+bool can_go_left(int current_line, int current_col, maze_t *maze, list_t *track_record);
 
