@@ -99,21 +99,70 @@ int get_colomn(int el_pos, int maze_col_count)
 {
     return (el_pos % maze_col_count);
 }
-bool can_go_up(int current_line, int current_col, maze_t *maze, int last_pos, int next_move)
+bool can_go_up(int current_line, int current_col, maze_t *maze, int last_pos, list_t *track_record, int next_move)
 {
-    return ((current_line - 1) >= 0 && (maze->grid[current_line - 1][current_col]) != 0 && ((current_line - 1) * maze->col_count + current_col) != last_pos && ((current_line - 1) * maze->col_count + current_col) != next_move);
+    bool result = (current_line - 1) >= 0;
+    result = result && (maze->grid[current_line - 1][current_col]) != 0;
+    result = result && ((current_line - 1) * maze->col_count + current_col) != next_move;
+
+    int track_record_length = getLength(track_record);
+    int *track_record_vect = listToArray(track_record, track_record_length);
+
+    result = result && !(liniar_search_array(track_record_vect, track_record_length, last_pos) && track_record_length > 1);
+
+    free(track_record_vect);
+
+    return result;
 }
-bool can_go_down(int current_line, int current_col, maze_t *maze, int last_pos, int next_move)
+bool can_go_down(int current_line, int current_col, maze_t *maze, int last_pos, list_t *track_record, int next_move)
 {
-    return ((current_line + 1 < maze->row_count) && maze->grid[current_line + 1][current_col] != 0 && (current_line + 1) * maze->col_count + current_col != last_pos && (current_line + 1) * maze->col_count + current_col != next_move);
+    bool result = (current_line + 1 < maze->row_count);
+    result = result && maze->grid[current_line + 1][current_col] != 0;
+    result = result && (current_line + 1) * maze->col_count + current_col != next_move;
+
+    int track_record_length = getLength(track_record);
+    int *track_record_vect = listToArray(track_record, track_record_length);
+
+    result = result && !(liniar_search_array(track_record_vect, track_record_length, last_pos) && track_record_length > 1);
+
+
+    free(track_record_vect);
+
+    return result;
 }
-bool can_go_right(int current_line, int current_col, maze_t *maze, int last_pos, int next_move)
+bool can_go_right(int current_line, int current_col, maze_t *maze, int last_pos, list_t *track_record, int next_move)
 {
-    return ((current_col + 1 < maze->col_count) && (maze->grid[current_line][current_col + 1] != 0) && (((current_line * maze->col_count) + current_col + 1) != last_pos) && (((current_line * maze->col_count) + current_col + 1) != next_move));
+    bool result = (current_col + 1 < maze->col_count);
+    result = result && (maze->grid[current_line][current_col + 1] != 0);
+    result = result && (((current_line * maze->col_count) + current_col + 1) != next_move);
+
+    int track_record_length = getLength(track_record);
+    int *track_record_vect = listToArray(track_record, track_record_length);
+
+    result = result && !(liniar_search_array(track_record_vect, track_record_length, last_pos) && track_record_length > 1);
+
+
+    free(track_record_vect);
+
+    return result;
 }
-bool can_go_left(int current_line, int current_col, maze_t *maze, int last_pos, int next_move)
+bool can_go_left(int current_line, int current_col, maze_t *maze, int last_pos, list_t *track_record, int next_move)
 {
-    return ((current_col - 1) >= 0 && maze->grid[current_line][current_col - 1] != 0 && ((current_line * maze->col_count) + maze->col_count - 1) != last_pos && ((current_line * maze->col_count) + current_col - 1) != next_move);
+
+    bool result = (current_col - 1) >= 0;
+    result = result && maze->grid[current_line][current_col - 1] != 0;
+    result = result && ((current_line * maze->col_count) + current_col - 1) != next_move;
+
+
+    int track_record_length = getLength(track_record);
+    int *track_record_vect = listToArray(track_record, track_record_length);
+
+    result = result && !(liniar_search_array(track_record_vect, track_record_length, last_pos) && track_record_length > 1);
+
+
+    free(track_record_vect);
+
+    return result;
 }
 
 void *solveMaze_threaded(void *checkpoint)
@@ -170,17 +219,16 @@ void *solveMaze_threaded(void *checkpoint)
         next_move = current_checkpoint->last_pos + current_checkpoint->direction;
 
         /*check for any other possible ways*/
-        is_up_possible = can_go_up(current_line, current_col, &maze, current_checkpoint->last_pos, next_move);
-        is_down_possible = can_go_down(current_line, current_col, &maze, current_checkpoint->last_pos, next_move);
-        is_left_possible = can_go_left(current_line, current_col, &maze, current_checkpoint->last_pos, next_move);
-        is_right_possible = can_go_right(current_line, current_col, &maze, current_checkpoint->last_pos, next_move);
+        is_up_possible = can_go_up(current_line, current_col, &maze, current_checkpoint->last_pos, current_checkpoint->current_track_record, next_move);
+        is_down_possible = can_go_down(current_line, current_col, &maze, current_checkpoint->last_pos,current_checkpoint->current_track_record, next_move);
+        is_left_possible = can_go_left(current_line, current_col, &maze, current_checkpoint->last_pos,current_checkpoint->current_track_record, next_move);
+        is_right_possible = can_go_right(current_line, current_col, &maze, current_checkpoint->last_pos,current_checkpoint->current_track_record, next_move);
 
         // /* if there is any way, fire up a thread following it */
         if (is_up_possible)
         {
             // create a thread to go up
             printf("can go up\n");
-
 
             /* make sure that the parent<>son relation is set trought out the list_t * possible_way[4] */
             current_checkpoint->possible_ways[0] = copy_list(current_checkpoint->current_track_record);
@@ -214,7 +262,7 @@ void *solveMaze_threaded(void *checkpoint)
             /* make sure that the passed direction is the correct one */
             down_thread_checkpoint.direction = +(maze.col_count);
             /* make sure that the passed last_position is actually the current position */
-            down_thread_checkpoint.last_pos = current_checkpoint->last_pos +(maze.col_count);
+            down_thread_checkpoint.last_pos = current_checkpoint->last_pos + (maze.col_count);
             /* make sure that the son also goes to search for the end */
             down_thread_checkpoint.end_reached = current_checkpoint->end_reached;
             /* make sure that the son also gets a refrence to the maze */
@@ -249,12 +297,11 @@ void *solveMaze_threaded(void *checkpoint)
             // create a thread to go right
             printf("can go right\n");
 
-
             /* make sure that the parent<>son relation is set trought out the list_t * possible_way[4] */
             current_checkpoint->possible_ways[3] = copy_list(current_checkpoint->current_track_record);
             right_thread_checkpoint.current_track_record = current_checkpoint->possible_ways[3];
 
-            right_thread_checkpoint.current_track_record = push_list(right_thread_checkpoint.current_track_record,current_checkpoint->last_pos + 1);
+            right_thread_checkpoint.current_track_record = push_list(right_thread_checkpoint.current_track_record, current_checkpoint->last_pos + 1);
 
             /* make sure that the passed direction is the correct one */
             right_thread_checkpoint.direction = (1);
