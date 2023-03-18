@@ -2,6 +2,11 @@
 #include "./arrays.h"
 #include "./singleLinkedLists.h"
 
+
+static pthread_mutex_t lock;
+static int free_threads_count = 8;
+
+
 struct maze
 {
     int entry[2];
@@ -22,6 +27,11 @@ struct checkpoint
 
 typedef struct maze maze_t;
 typedef struct checkpoint checkpoint_t;
+
+
+
+
+
 
 void findStart(maze_t *playground);
 void findEnd(maze_t *playground);
