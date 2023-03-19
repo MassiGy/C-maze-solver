@@ -174,12 +174,10 @@ void *solveMaze_threaded(void *checkpoint)
     checkpoint_t *current_checkpoint = (checkpoint_t *)checkpoint;
     maze_t maze = *(current_checkpoint->p_maze);
 
-    (*(current_checkpoint->used_threads_count))++;
 
     // get the coordinates
     int current_line = get_line(current_checkpoint->last_pos, maze.col_count);
     int current_col = get_colomn(current_checkpoint->last_pos, maze.col_count);
-    printf("current_line = %d, current_col = %d\n", current_line, current_col);
 
     // make sure that the parent is on its track record
     assert(current_checkpoint->current_track_record != NULL);
@@ -257,9 +255,7 @@ void *solveMaze_threaded(void *checkpoint)
             up_thread_checkpoint.limited_threads = current_checkpoint->limited_threads;
             up_thread_checkpoint.free_threads_count = current_checkpoint->free_threads_count;
 
-            /* make sure that the son has access to the used threads counter */
-            up_thread_checkpoint.used_threads_count = current_checkpoint->used_threads_count;
-
+            
             if (current_checkpoint->limited_threads)
             {
                 sem_wait(current_checkpoint->free_threads_count);
@@ -290,9 +286,7 @@ void *solveMaze_threaded(void *checkpoint)
             down_thread_checkpoint.limited_threads = current_checkpoint->limited_threads;
             down_thread_checkpoint.free_threads_count = current_checkpoint->free_threads_count;
 
-            /* make sure that the son has access to the used threads counter */
-            down_thread_checkpoint.used_threads_count = current_checkpoint->used_threads_count;
-
+            
             if (current_checkpoint->limited_threads)
             {
                 sem_wait(current_checkpoint->free_threads_count);
@@ -322,9 +316,7 @@ void *solveMaze_threaded(void *checkpoint)
             left_thread_checkpoint.limited_threads = current_checkpoint->limited_threads;
             left_thread_checkpoint.free_threads_count = current_checkpoint->free_threads_count;
 
-            /* make sure that the son has access to the used threads counter */
-            left_thread_checkpoint.used_threads_count = current_checkpoint->used_threads_count;
-
+            
             if (current_checkpoint->limited_threads)
             {
                 sem_wait(current_checkpoint->free_threads_count);
@@ -354,9 +346,7 @@ void *solveMaze_threaded(void *checkpoint)
             right_thread_checkpoint.limited_threads = current_checkpoint->limited_threads;
             right_thread_checkpoint.free_threads_count = current_checkpoint->free_threads_count;
 
-            /* make sure that the son has access to the used threads counter */
-            right_thread_checkpoint.used_threads_count = current_checkpoint->used_threads_count;
-
+            
             if (current_checkpoint->limited_threads)
             {
                 sem_wait(current_checkpoint->free_threads_count);
@@ -518,7 +508,6 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     assert(p_playground != NULL);
     assert(*p_visitedNodes != NULL);
 
-    printf("current_line = %d, current_col = %d\n", current_line, current_col);
 
     // make sure that we are not into a wall
     if (p_playground->grid[current_line][current_col] == 0)
