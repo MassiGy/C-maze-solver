@@ -26,6 +26,8 @@ struct checkpoint
 
     bool limited_threads;
     sem_t * free_threads_count;
+
+    int * used_threads_count;
 };
 
 typedef struct maze maze_t;

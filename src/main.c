@@ -38,9 +38,15 @@ int main(void)
     start_checkpoint.last_pos = maze.entry[0] * maze.col_count + maze.entry[1];
 
     start_checkpoint.limited_threads = true;
-    sem_init(start_checkpoint.free_threads_count, 0, 50);
+    start_checkpoint.free_threads_count = malloc(sizeof(sem_t));
+    sem_init(start_checkpoint.free_threads_count, 0, 10);
+
+    int used_threads = 0;
+    start_checkpoint.used_threads_count = &used_threads;
 
     solveMaze_threaded(&start_checkpoint);
+    printf("used_threads_count = %d\n", *(start_checkpoint.used_threads_count));
+
 
     if (getLength(start_checkpoint.current_track_record) >= 1)
     {
