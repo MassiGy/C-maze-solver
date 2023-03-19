@@ -20,11 +20,6 @@ struct checkpoint
     int last_pos;
     bool end_reached;
     struct maze *p_maze;
-
-    bool limited_threads;
-    int * free_threads_count;
-    pthread_mutex_t * lock;
-
 };
 
 typedef struct maze maze_t;
