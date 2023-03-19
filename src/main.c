@@ -4,7 +4,8 @@
 
 int main(void)
 {
-    pthread_mutex_init(&lock, NULL);
+   
+
 
     maze_t maze;
     loadMaze(&maze);
@@ -26,12 +27,18 @@ int main(void)
 
     printf("\n");
 
+    
+
+
     checkpoint_t start_checkpoint;
     start_checkpoint.current_track_record = create_node_list(maze.entry[0] * maze.col_count + maze.entry[1]);
     start_checkpoint.direction = (-maze.col_count);
     start_checkpoint.end_reached = false;
     start_checkpoint.p_maze = &maze;
     start_checkpoint.last_pos = maze.entry[0] * maze.col_count + maze.entry[1];
+
+    start_checkpoint.limited_threads = true;
+    sem_init(start_checkpoint.free_threads_count, 0, 50);
 
     solveMaze_threaded(&start_checkpoint);
 
@@ -42,7 +49,8 @@ int main(void)
     }
 
     destroyMaze(&maze);
-    pthread_mutex_destroy(&lock);
-
+    sem_destroy(start_checkpoint.free_threads_count);
+  
+    
     return 0;
 }

@@ -3,8 +3,8 @@
 #include "./singleLinkedLists.h"
 
 
-static pthread_mutex_t lock;
-static int free_threads_count = 8;
+
+
 
 
 struct maze
@@ -23,6 +23,9 @@ struct checkpoint
     int last_pos;
     bool end_reached;
     struct maze *p_maze;
+
+    bool limited_threads;
+    sem_t * free_threads_count;
 };
 
 typedef struct maze maze_t;
