@@ -2,8 +2,6 @@
 #include "./arrays.h"
 #include "./singleLinkedLists.h"
 
-
-
 struct maze
 {
     int entry[2];
@@ -20,15 +18,14 @@ struct checkpoint
     int last_pos;
     bool end_reached;
     struct maze *p_maze;
+
+    bool limited_threads;
+    pthread_mutex_t *lock;
+    int *p_free_threads_count;
 };
 
 typedef struct maze maze_t;
 typedef struct checkpoint checkpoint_t;
-
-
-
-
-
 
 void findStart(maze_t *playground);
 void findEnd(maze_t *playground);
@@ -45,4 +42,3 @@ bool can_go_up(int current_line, int current_col, maze_t *maze, list_t *track_re
 bool can_go_down(int current_line, int current_col, maze_t *maze, list_t *track_record);
 bool can_go_right(int current_line, int current_col, maze_t *maze, list_t *track_record);
 bool can_go_left(int current_line, int current_col, maze_t *maze, list_t *track_record);
-

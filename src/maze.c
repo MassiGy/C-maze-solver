@@ -189,8 +189,28 @@ void *solveMaze_threaded(void *checkpoint)
     pthread_t up_thread, down_thread, left_thread, right_thread;
     checkpoint_t up_thread_checkpoint, down_thread_checkpoint, left_thread_checkpoint, right_thread_checkpoint;
 
+    bool is_up_thread_launched;
+    bool is_down_thread_launched;
+    bool is_left_thread_launched;
+    bool is_right_thread_launched;
+
+    if (current_checkpoint->limited_threads)
+    {
+        is_up_thread_launched = false;
+        is_down_thread_launched = false;
+        is_left_thread_launched = false;
+        is_right_thread_launched = false;
+    }
+    else
+    {
+        is_up_thread_launched = true;
+        is_down_thread_launched = true;
+        is_left_thread_launched = true;
+        is_right_thread_launched = true;
+    }
+
     int *constructed_path;
-    int constructed_path_lenght;
+    int constructed_path_length;
     bool does_lead_to_end;
 
     while (!(current_checkpoint->end_reached))
@@ -233,7 +253,6 @@ void *solveMaze_threaded(void *checkpoint)
         /* if there is any way, fire up a thread following it */
         if (is_up_possible)
         {
-
             // create a thread to go up
 
             /* make sure that the parent<>son relation is set */
@@ -250,7 +269,48 @@ void *solveMaze_threaded(void *checkpoint)
             /* make sure that the son also gets a refrence to the maze */
             up_thread_checkpoint.p_maze = &maze;
 
-            pthread_create(&up_thread, NULL, &solveMaze_threaded, &up_thread_checkpoint);
+            /* make sure that the son knows if the threads are limited */
+            up_thread_checkpoint.limited_threads = current_checkpoint->limited_threads;
+            /* if so make sure that the son has the refrence to the mutex and the counter */
+            up_thread_checkpoint.p_free_threads_count = current_checkpoint->p_free_threads_count;
+            up_thread_checkpoint.lock = current_checkpoint->lock;
+
+            if (current_checkpoint->limited_threads)
+            {
+                /*make sure that there is a free thread before spawning one*/
+                bool thereis_free_thread = false;
+
+                /* lock the critical region */
+                pthread_mutex_lock(current_checkpoint->lock);
+
+                if ((*(current_checkpoint->p_free_threads_count)) > 0)
+                {
+                    thereis_free_thread = true;
+                    (*(current_checkpoint->p_free_threads_count))--;
+                    printf("on up check (%p) => (%d)\n", current_checkpoint->p_free_threads_count, (*(current_checkpoint->p_free_threads_count)));
+                }
+                pthread_mutex_unlock(current_checkpoint->lock);
+
+                if (thereis_free_thread)
+                {
+                    /* if there is a free thread, fire up the thread and make the is_thread_launched flag on.*/
+                    is_up_thread_launched = true;
+                    pthread_create(&up_thread, NULL, &solveMaze_threaded, &up_thread_checkpoint);
+                }
+                else
+                {
+                    /* otherwise, solve this maze part recursively */
+                    is_up_thread_launched = false;
+                    solveMaze_rec(&maze,
+                                  &(up_thread_checkpoint.current_track_record),
+                                  get_line(up_thread_checkpoint.last_pos, maze.col_count),
+                                  get_colomn(up_thread_checkpoint.last_pos, maze.col_count));
+                }
+            }
+            else
+            {
+                pthread_create(&up_thread, NULL, &solveMaze_threaded, &up_thread_checkpoint);
+            }
         }
 
         if (is_down_possible)
@@ -271,7 +331,49 @@ void *solveMaze_threaded(void *checkpoint)
             /* make sure that the son also gets a refrence to the maze */
             down_thread_checkpoint.p_maze = &maze;
 
-            pthread_create(&down_thread, NULL, &solveMaze_threaded, &down_thread_checkpoint);
+            /* make sure that the son knows if the threads are limited */
+            down_thread_checkpoint.limited_threads = current_checkpoint->limited_threads;
+            /* make sure that the son has the refrence to the mutex and the counter */
+            down_thread_checkpoint.p_free_threads_count = current_checkpoint->p_free_threads_count;
+            down_thread_checkpoint.lock = current_checkpoint->lock;
+
+            if (current_checkpoint->limited_threads)
+            {
+                /*make sure that there is a free thread before spawning one*/
+                bool thereis_free_thread = false;
+
+                /*lock the shared ressources*/
+                pthread_mutex_lock(current_checkpoint->lock);
+
+                if ((*(current_checkpoint->p_free_threads_count)) > 0)
+                {
+                    thereis_free_thread = true;
+                    (*(current_checkpoint->p_free_threads_count))--;
+                    printf("on down check (%p) => (%d)\n", current_checkpoint->p_free_threads_count, (*(current_checkpoint->p_free_threads_count)));
+                }
+
+                pthread_mutex_unlock(current_checkpoint->lock);
+
+                if (thereis_free_thread)
+                {
+                    /* if there is any thread availible, launche it and make the flag is_thread_launched on*/
+                    is_down_thread_launched = true;
+                    pthread_create(&down_thread, NULL, &solveMaze_threaded, &down_thread_checkpoint);
+                }
+                else
+                {
+                    /* otherwise, solve this maze part recursively */
+                    is_down_thread_launched = false;
+                    solveMaze_rec(&maze,
+                                  &(down_thread_checkpoint.current_track_record),
+                                  get_line(down_thread_checkpoint.last_pos, maze.col_count),
+                                  get_colomn(down_thread_checkpoint.last_pos, maze.col_count));
+                }
+            }
+            else
+            {
+                pthread_create(&down_thread, NULL, &solveMaze_threaded, &down_thread_checkpoint);
+            }
         }
         if (is_left_possible)
         {
@@ -291,7 +393,49 @@ void *solveMaze_threaded(void *checkpoint)
             /* make sure that the son also gets a refrence to the maze */
             left_thread_checkpoint.p_maze = &maze;
 
-            pthread_create(&left_thread, NULL, &solveMaze_threaded, &left_thread_checkpoint);
+            /* make sure that the son knows if the threads are limited */
+            left_thread_checkpoint.limited_threads = current_checkpoint->limited_threads;
+            /* make sure that the son has the refrence to the mutex and the counter */
+            left_thread_checkpoint.p_free_threads_count = current_checkpoint->p_free_threads_count;
+            left_thread_checkpoint.lock = current_checkpoint->lock;
+
+            if (current_checkpoint->limited_threads)
+            {
+                /*make sure that there is a free thread before spawning one*/
+                bool thereis_free_thread = false;
+
+                /* lock the critical region */
+                pthread_mutex_lock(current_checkpoint->lock);
+
+                if ((*(current_checkpoint->p_free_threads_count)) > 0)
+                {
+                    thereis_free_thread = true;
+                    (*(current_checkpoint->p_free_threads_count))--;
+                    printf("on left check (%p) => (%d)\n", current_checkpoint->p_free_threads_count, (*(current_checkpoint->p_free_threads_count)));
+                }
+
+                pthread_mutex_unlock(current_checkpoint->lock);
+
+                if (thereis_free_thread)
+                {
+                    /* if there is any availible thread, launch it, and make the is_thread_launched flag on */
+                    is_left_thread_launched = true;
+                    pthread_create(&left_thread, NULL, &solveMaze_threaded, &left_thread_checkpoint);
+                }
+                else
+                {
+                    /* otherwise solve this maze part recursively */
+                    is_left_thread_launched = false;
+                    solveMaze_rec(&maze,
+                                  &(left_thread_checkpoint.current_track_record),
+                                  get_line(left_thread_checkpoint.last_pos, maze.col_count),
+                                  get_colomn(left_thread_checkpoint.last_pos, maze.col_count));
+                }
+            }
+            else
+            {
+                pthread_create(&left_thread, NULL, &solveMaze_threaded, &left_thread_checkpoint);
+            }
         }
 
         if (is_right_possible)
@@ -312,21 +456,72 @@ void *solveMaze_threaded(void *checkpoint)
             /* make sure that the son also gets a refrence to the maze */
             right_thread_checkpoint.p_maze = &maze;
 
-         
+            /* make sure that the son has the refrence to the mutex and the counter */
+            right_thread_checkpoint.limited_threads = current_checkpoint->limited_threads;
+            right_thread_checkpoint.p_free_threads_count = current_checkpoint->p_free_threads_count;
+            right_thread_checkpoint.lock = current_checkpoint->lock;
 
-            pthread_create(&right_thread, NULL, &solveMaze_threaded, &right_thread_checkpoint);
+            if (current_checkpoint->limited_threads)
+            {
+                /*make sure that there is a free thread before spawning one*/
+                bool thereis_free_thread = false;
+
+                /*lock the critical region*/
+                pthread_mutex_lock(current_checkpoint->lock);
+
+                if ((*(current_checkpoint->p_free_threads_count)) > 0)
+                {
+                    thereis_free_thread = true;
+                    (*(current_checkpoint->p_free_threads_count))--;
+                    printf("on right check (%p) => (%d)\n", current_checkpoint->p_free_threads_count, (*(current_checkpoint->p_free_threads_count)));
+                }
+
+                pthread_mutex_unlock(current_checkpoint->lock);
+
+                if (thereis_free_thread)
+                {
+                    /* if there is any thread availible from our pool, launch it and turn on the is_thread_lanched flag*/
+                    is_right_thread_launched = true;
+                    pthread_create(&right_thread, NULL, &solveMaze_threaded, &right_thread_checkpoint);
+                }
+                else
+                {
+                    /*otherwise, solve this part of the maze recursively*/
+                    is_right_thread_launched = false;
+                    solveMaze_rec(&maze,
+                                  &(right_thread_checkpoint.current_track_record),
+                                  get_line(right_thread_checkpoint.last_pos, maze.col_count),
+                                  get_colomn(right_thread_checkpoint.last_pos, maze.col_count));
+                }
+            }
+            else
+            {
+                pthread_create(&right_thread, NULL, &solveMaze_threaded, &right_thread_checkpoint);
+            }
         }
 
         /* if any thread gets spawned, we will wait for it */
         if (is_up_possible)
         {
-            pthread_join(up_thread, NULL);
-           
-            /* see if the constructed path by this thread leads to the end */
-            constructed_path_lenght = getLength(up_thread_checkpoint.current_track_record);
-            constructed_path = listToArray(up_thread_checkpoint.current_track_record, constructed_path_lenght);
+            if (is_up_thread_launched)
+            {
+                /*if the launched thread flag is on, join the thread*/
+                pthread_join(up_thread, NULL);
+            }
+            if (current_checkpoint->limited_threads)
+            {
+                /*signal the free_threads_counter value */
+                pthread_mutex_lock(current_checkpoint->lock);
+                (*(current_checkpoint->p_free_threads_count))++;
+                printf("on up join (%p) => (%d)\n", current_checkpoint->p_free_threads_count, (*(current_checkpoint->p_free_threads_count)));
+                pthread_mutex_unlock(current_checkpoint->lock);
+            }
 
-            does_lead_to_end = liniar_search_array(constructed_path, constructed_path_lenght, maze.end[0] * maze.col_count + maze.end[1]);
+            /* see if the constructed path by this thread leads to the end */
+            constructed_path_length = getLength(up_thread_checkpoint.current_track_record);
+            constructed_path = listToArray(up_thread_checkpoint.current_track_record, constructed_path_length);
+
+            does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
 
             if (does_lead_to_end)
             {
@@ -354,14 +549,26 @@ void *solveMaze_threaded(void *checkpoint)
 
         if (is_down_possible)
         {
+            if (is_down_thread_launched)
+            {
+                /*if the launched thread flag is on, join the thread*/
+                pthread_join(down_thread, NULL);
+            }
+            if (current_checkpoint->limited_threads)
+            {
+                /*signal the free_threads_counter value */
+                pthread_mutex_lock(current_checkpoint->lock);
+                (*(current_checkpoint->p_free_threads_count))++;
+                printf("on down join (%p) => (%d)\n", current_checkpoint->p_free_threads_count, (*(current_checkpoint->p_free_threads_count)));
 
-            pthread_join(down_thread, NULL);
-           
+                pthread_mutex_unlock(current_checkpoint->lock);
+            }
+
             /* see if the constructed path by this thread leads to the end */
-            constructed_path_lenght = getLength(down_thread_checkpoint.current_track_record);
-            constructed_path = listToArray(down_thread_checkpoint.current_track_record, constructed_path_lenght);
+            constructed_path_length = getLength(down_thread_checkpoint.current_track_record);
+            constructed_path = listToArray(down_thread_checkpoint.current_track_record, constructed_path_length);
 
-            does_lead_to_end = liniar_search_array(constructed_path, constructed_path_lenght, maze.end[0] * maze.col_count + maze.end[1]);
+            does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
 
             if (does_lead_to_end)
             {
@@ -386,13 +593,26 @@ void *solveMaze_threaded(void *checkpoint)
         }
         if (is_left_possible)
         {
-            pthread_join(left_thread, NULL);
-           
-            /* see if the constructed path by this thread leads to the end */
-            constructed_path_lenght = getLength(left_thread_checkpoint.current_track_record);
-            constructed_path = listToArray(left_thread_checkpoint.current_track_record, constructed_path_lenght);
+            if (is_left_thread_launched)
+            {
+                /*if the launched thread flag is on, join the thread*/
+                pthread_join(left_thread, NULL);
+            }
+            if (current_checkpoint->limited_threads)
+            {
+                /*signal the free_threads_counter value */
+                pthread_mutex_lock(current_checkpoint->lock);
+                (*(current_checkpoint->p_free_threads_count))++;
+                printf("on left join (%p) => (%d)\n", current_checkpoint->p_free_threads_count, (*(current_checkpoint->p_free_threads_count)));
 
-            does_lead_to_end = liniar_search_array(constructed_path, constructed_path_lenght, maze.end[0] * maze.col_count + maze.end[1]);
+                pthread_mutex_unlock(current_checkpoint->lock);
+            }
+
+            /* see if the constructed path by this thread leads to the end */
+            constructed_path_length = getLength(left_thread_checkpoint.current_track_record);
+            constructed_path = listToArray(left_thread_checkpoint.current_track_record, constructed_path_length);
+
+            does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
 
             if (does_lead_to_end)
             {
@@ -419,13 +639,26 @@ void *solveMaze_threaded(void *checkpoint)
 
         if (is_right_possible)
         {
-            pthread_join(right_thread, NULL);
-           
-            /* see if the constructed path by this thread leads to the end */
-            constructed_path_lenght = getLength(right_thread_checkpoint.current_track_record);
-            constructed_path = listToArray(right_thread_checkpoint.current_track_record, constructed_path_lenght);
+            if (is_right_thread_launched)
+            {
+                /*if the launched thread flag is on, join the thread*/
+                pthread_join(right_thread, NULL);
+            }
+            if (current_checkpoint->limited_threads)
+            {
+                /*signal the free_threads_counter value */
+                pthread_mutex_lock(current_checkpoint->lock);
+                (*(current_checkpoint->p_free_threads_count))++;
+                printf("on right join (%p) => (%d)\n", current_checkpoint->p_free_threads_count, (*(current_checkpoint->p_free_threads_count)));
 
-            does_lead_to_end = liniar_search_array(constructed_path, constructed_path_lenght, maze.end[0] * maze.col_count + maze.end[1]);
+                pthread_mutex_unlock(current_checkpoint->lock);
+            }
+
+            /* see if the constructed path by this thread leads to the end */
+            constructed_path_length = getLength(right_thread_checkpoint.current_track_record);
+            constructed_path = listToArray(right_thread_checkpoint.current_track_record, constructed_path_length);
+
+            does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
 
             if (does_lead_to_end)
             {
@@ -462,7 +695,6 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
 {
     assert(p_playground != NULL);
     assert(*p_visitedNodes != NULL);
-
 
     // make sure that we are not into a wall
     if (p_playground->grid[current_line][current_col] == 0)
