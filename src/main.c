@@ -5,8 +5,6 @@
 int main(void)
 {
    
-
-
     maze_t maze;
     loadMaze(&maze);
     printMatrix(&(maze.grid), maze.row_count, maze.col_count);
@@ -54,6 +52,7 @@ int main(void)
 
     destroyMaze(&maze);
     sem_destroy(start_checkpoint.free_threads_count);
+    free(start_checkpoint.free_threads_count);
   
     
     return 0;
