@@ -31,7 +31,7 @@ int main(void)
     start_checkpoint.p_maze = &maze;
     start_checkpoint.last_pos = maze.entry[0] * maze.col_count + maze.entry[1];
 
-    start_checkpoint.limited_threads = false;
+    start_checkpoint.limited_threads = true;
     start_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(start_checkpoint.lock, NULL);
 
@@ -41,11 +41,6 @@ int main(void)
     
 
     solveMaze_threaded(&start_checkpoint);
-
-
-    // solveMaze_rec(&maze,&(start_checkpoint.current_track_record), 1, 2);
-
-
 
 
     if (getLength(start_checkpoint.current_track_record) >= 1)
