@@ -258,8 +258,6 @@ void *solveMaze_threaded(void *checkpoint)
             /* make sure that the parent<>son relation is set */
             up_thread_checkpoint.current_track_record = copy_list(current_checkpoint->current_track_record);
 
-            up_thread_checkpoint.current_track_record = push_list(up_thread_checkpoint.current_track_record, current_checkpoint->last_pos - (maze.col_count));
-
             /* make sure that the passed direction is the correct one */
             up_thread_checkpoint.direction = -(maze.col_count);
             /* make sure that the passed last_position is actually the current position */
@@ -295,6 +293,8 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* if there is a free thread, fire up the thread and make the is_thread_launched flag on.*/
                     is_up_thread_launched = true;
+                    up_thread_checkpoint.current_track_record = push_list(up_thread_checkpoint.current_track_record, current_checkpoint->last_pos - (maze.col_count));
+
                     pthread_create(&up_thread, NULL, &solveMaze_threaded, &up_thread_checkpoint);
                 }
                 else
@@ -309,6 +309,8 @@ void *solveMaze_threaded(void *checkpoint)
             }
             else
             {
+                up_thread_checkpoint.current_track_record = push_list(up_thread_checkpoint.current_track_record, current_checkpoint->last_pos - (maze.col_count));
+
                 pthread_create(&up_thread, NULL, &solveMaze_threaded, &up_thread_checkpoint);
             }
         }
@@ -319,8 +321,6 @@ void *solveMaze_threaded(void *checkpoint)
 
             /* make sure that the parent<>son relation is set */
             down_thread_checkpoint.current_track_record = copy_list(current_checkpoint->current_track_record);
-
-            down_thread_checkpoint.current_track_record = push_list(down_thread_checkpoint.current_track_record, current_checkpoint->last_pos + maze.col_count);
 
             /* make sure that the passed direction is the correct one */
             down_thread_checkpoint.direction = +(maze.col_count);
@@ -358,6 +358,8 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* if there is any thread availible, launche it and make the flag is_thread_launched on*/
                     is_down_thread_launched = true;
+                    down_thread_checkpoint.current_track_record = push_list(down_thread_checkpoint.current_track_record, current_checkpoint->last_pos + maze.col_count);
+
                     pthread_create(&down_thread, NULL, &solveMaze_threaded, &down_thread_checkpoint);
                 }
                 else
@@ -372,6 +374,8 @@ void *solveMaze_threaded(void *checkpoint)
             }
             else
             {
+                down_thread_checkpoint.current_track_record = push_list(down_thread_checkpoint.current_track_record, current_checkpoint->last_pos + maze.col_count);
+
                 pthread_create(&down_thread, NULL, &solveMaze_threaded, &down_thread_checkpoint);
             }
         }
@@ -381,8 +385,6 @@ void *solveMaze_threaded(void *checkpoint)
 
             /* make sure that the parent<>son relation is set */
             left_thread_checkpoint.current_track_record = copy_list(current_checkpoint->current_track_record);
-
-            left_thread_checkpoint.current_track_record = push_list(left_thread_checkpoint.current_track_record, current_checkpoint->last_pos - 1);
 
             /* make sure that the passed direction is the correct one */
             left_thread_checkpoint.direction = -(1);
@@ -420,6 +422,8 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* if there is any availible thread, launch it, and make the is_thread_launched flag on */
                     is_left_thread_launched = true;
+                    left_thread_checkpoint.current_track_record = push_list(left_thread_checkpoint.current_track_record, current_checkpoint->last_pos - 1);
+
                     pthread_create(&left_thread, NULL, &solveMaze_threaded, &left_thread_checkpoint);
                 }
                 else
@@ -434,6 +438,8 @@ void *solveMaze_threaded(void *checkpoint)
             }
             else
             {
+                left_thread_checkpoint.current_track_record = push_list(left_thread_checkpoint.current_track_record, current_checkpoint->last_pos - 1);
+
                 pthread_create(&left_thread, NULL, &solveMaze_threaded, &left_thread_checkpoint);
             }
         }
@@ -444,8 +450,6 @@ void *solveMaze_threaded(void *checkpoint)
 
             /* make sure that the parent<>son relation is set */
             right_thread_checkpoint.current_track_record = copy_list(current_checkpoint->current_track_record);
-
-            right_thread_checkpoint.current_track_record = push_list(right_thread_checkpoint.current_track_record, current_checkpoint->last_pos + 1);
 
             /* make sure that the passed direction is the correct one */
             right_thread_checkpoint.direction = (1);
@@ -482,12 +486,15 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* if there is any thread availible from our pool, launch it and turn on the is_thread_lanched flag*/
                     is_right_thread_launched = true;
+                    right_thread_checkpoint.current_track_record = push_list(right_thread_checkpoint.current_track_record, current_checkpoint->last_pos + 1);
+
                     pthread_create(&right_thread, NULL, &solveMaze_threaded, &right_thread_checkpoint);
                 }
                 else
                 {
                     /*otherwise, solve this part of the maze recursively*/
                     is_right_thread_launched = false;
+
                     solveMaze_rec(&maze,
                                   &(right_thread_checkpoint.current_track_record),
                                   get_line(right_thread_checkpoint.last_pos, maze.col_count),
@@ -496,6 +503,8 @@ void *solveMaze_threaded(void *checkpoint)
             }
             else
             {
+                right_thread_checkpoint.current_track_record = push_list(right_thread_checkpoint.current_track_record, current_checkpoint->last_pos + 1);
+
                 pthread_create(&right_thread, NULL, &solveMaze_threaded, &right_thread_checkpoint);
             }
         }
@@ -695,6 +704,8 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
 {
     assert(p_playground != NULL);
     assert(*p_visitedNodes != NULL);
+
+    // printf("> on recursive call current_line =%d, current_col = %d\n", current_line, current_col);
 
     // make sure that we are not into a wall
     if (p_playground->grid[current_line][current_col] == 0)
