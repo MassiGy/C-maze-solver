@@ -3,16 +3,19 @@ Question pour la partie 3:
 - est-ce que le program pour la génération
 de maze à double entrée/sortie doit être fait
 par nous même ou on peut s'en procurer un déjà fait.
-(car c'est hors sujet)
+(car c'est hors sujet) --> on peut modifier le maze à la main
 
 - Dans la partie sans synchro, est-ce que le fait de lancer deux threads (deux joueurs) est 
 équivalent à lancer deux threads avec comme routine la fonction créer pour la partie 2 
 mais en changeant juste les coordonnées des sortie afin que chaqu'une aura comme coordonnées
-de sortie une des deux sorties.
+de sortie une des deux sorties. ---> c'est juste cela,
 
 - Aussi, dans cette même partie, est-ce que les deux threads (deux joueurs) peuvent
 se croiser, ou bien passer par les même chemains lors de leurs recherche de leurs sortie respectives.
 
+---> non, il y a pas de contrainte la dessus.
+
 - Dans la partie avec synchro, est-ce que il faut juste ajouter la porte et faire en sorte que les 
 deux threads se rejoignent dessus avant qu'elles continuent vers la fin, ou il y a autre chose à ajouter.
 
+---> c'est juste cela, rien à faire en plus.

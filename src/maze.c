@@ -715,9 +715,22 @@ void *solveMaze_threaded(void *checkpoint)
         }
 
         /* then just continue moving according to the specified direction */
-        current_checkpoint->last_pos = next_move;
-        current_checkpoint->current_track_record = push_list(current_checkpoint->current_track_record, next_move);
-        current_checkpoint->end_reached = (current_checkpoint->last_pos == maze.end[0] * maze.col_count + maze.end[1]);
+        constructed_path_length = getLength(current_checkpoint->current_track_record);
+        constructed_path = listToArray(current_checkpoint->current_track_record, constructed_path_length);
+
+        does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
+        if (does_lead_to_end)
+        {
+            free(constructed_path);
+            break;
+        }
+        else
+        {
+            free(constructed_path);
+            current_checkpoint->last_pos = next_move;
+            current_checkpoint->current_track_record = push_list(current_checkpoint->current_track_record, next_move);
+            current_checkpoint->end_reached = (current_checkpoint->last_pos == maze.end[0] * maze.col_count + maze.end[1]);
+        }
     }
 
     return NULL;
