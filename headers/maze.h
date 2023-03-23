@@ -4,8 +4,11 @@
 
 struct maze
 {
-    int entry[2];
-    int end[2];
+    int fstEntry[2];
+    int fstEnd[2];
+    int sndEntry[2];
+    int sndEnd[2];
+    int target[2];
     int row_count;
     int col_count;
     int **grid;
@@ -27,8 +30,7 @@ struct checkpoint
 typedef struct maze maze_t;
 typedef struct checkpoint checkpoint_t;
 
-void findStart(maze_t *playground);
-void findEnd(maze_t *playground);
+void findStartNEndNTarget(maze_t *p_playground);
 void loadMaze(maze_t *p_playground);
 void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_line, int current_col);
 void *solveMaze_threaded(void *checkpoint);

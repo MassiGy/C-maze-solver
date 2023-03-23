@@ -1,35 +1,37 @@
 #include "../headers/maze.h"
 
-void findStart(maze_t *playground)
-{
+void findStartNEndNTarget(maze_t *playground) {
     for (int i = 0; i < playground->row_count; i++)
     {
         for (int j = 0; j < playground->col_count; j++)
         {
-            if (playground->grid[i][j] == 2)
+            switch (playground->grid[i][j])
             {
-                playground->entry[0] = i;
-                playground->entry[1] = j;
-                return;
+            case 2:
+                playground->fstEntry[0] = i;
+                playground->fstEntry[1] = j;
+                break;
+            case 3:
+                playground->fstEnd[0] = i;
+                playground->fstEnd[1] = j;
+                break;
+            case 4:
+                playground->sndEntry[0] = i;
+                playground->sndEntry[1] = j;
+                break;
+            case 5:
+                playground->sndEnd[0] = i;
+                playground->sndEnd[1] = j;
+                break;
+            case 6:
+                playground->target[0] = i;
+                playground->target[1] = j;
+                break;
             }
         }
+        
     }
-}
-
-void findEnd(maze_t *playground)
-{
-    for (int i = 0; i < playground->row_count; i++)
-    {
-        for (int j = 0; j < playground->col_count; j++)
-        {
-            if (playground->grid[i][j] == 3)
-            {
-                playground->end[0] = i;
-                playground->end[1] = j;
-                return;
-            }
-        }
-    }
+    
 }
 
 void loadMaze(maze_t *playground)

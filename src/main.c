@@ -7,29 +7,46 @@ int main(void)
     maze_t maze;
     loadMaze(&maze);
     printMatrix(&(maze.grid), maze.row_count, maze.col_count);
-    findStart(&maze);
-    findEnd(&maze);
+    findStartNEndNTarget(&maze);
 
-    printf("Entrée : ");
+    printf("Entrée 1 : ");
     for (int i = 0; i < 2; i++)
     {
-        printf("[%d]", maze.entry[i]);
+        printf("[%d]", maze.fstEntry[i]);
     }
 
-    printf("\nSortie : ");
+    printf("\nSortie 1 : ");
     for (int i = 0; i < 2; i++)
     {
-        printf("[%d]", maze.end[i]);
+        printf("[%d]", maze.fstEnd[i]);
+    }
+
+    printf("Entrée 2 : ");
+    for (int i = 0; i < 2; i++)
+    {
+        printf("[%d]", maze.sndEntry[i]);
+    }
+
+    printf("\nSortie 2 : ");
+    for (int i = 0; i < 2; i++)
+    {
+        printf("[%d]", maze.sndEnd[i]);
+    }
+
+    printf("\nCible : ");
+    for (int i = 0; i < 2; i++)
+    {
+        printf("[%d]", maze.target[i]);
     }
 
     printf("\n");
 
     checkpoint_t start_checkpoint;
-    start_checkpoint.current_track_record = create_node_list(maze.entry[0] * maze.col_count + maze.entry[1]);
+    start_checkpoint.current_track_record = create_node_list(maze.fstEntry[0] * maze.col_count + maze.fstEntry[1]);
     start_checkpoint.direction = -(maze.col_count);
     start_checkpoint.end_reached = false;
     start_checkpoint.p_maze = &maze;
-    start_checkpoint.last_pos = maze.entry[0] * maze.col_count + maze.entry[1];
+    start_checkpoint.last_pos = maze.fstEntry[0] * maze.col_count + maze.fstEntry[1];
 
     start_checkpoint.limited_threads = true;
     start_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
