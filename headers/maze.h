@@ -2,6 +2,10 @@
 #include "./arrays.h"
 #include "./singleLinkedLists.h"
 
+#define ENTRY_INIT_CODE 3 
+#define END_INIT_CODE 4
+
+
 struct maze
 {
     int entry[2];
@@ -19,6 +23,13 @@ struct checkpoint
     bool end_reached;
     struct maze *p_maze;
 
+    int id;
+
+
+    bool thereis_meet_up;
+    bool meet_point_reached;
+    list_t * path_to_meet_point;
+
     bool limited_threads;
     pthread_mutex_t *lock;
     int *p_free_threads_count;
@@ -27,8 +38,9 @@ struct checkpoint
 typedef struct maze maze_t;
 typedef struct checkpoint checkpoint_t;
 
-void findStart(maze_t *playground);
-void findEnd(maze_t *playground);
+void findKeyPoint(maze_t *playground, int entrySymbol, int endSymbol);
+void findMeetPoint(maze_t *playground);
+
 void loadMaze(maze_t *p_playground);
 void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_line, int current_col);
 void *solveMaze_threaded(void *checkpoint);

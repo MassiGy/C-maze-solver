@@ -75,9 +75,9 @@ def generation(colonnes, lignes):
             res[nlx][nly]    = 1
         visite[x][y] = True
 
-    res[enter[0]][enter[1]] = 2
+    res[enter[0]][enter[1]] = 3
 
-    res[ligne_sortie(res)][colonnes - 2] = 3
+    res[ligne_sortie(res)][colonnes - 2] = 4
 
     return res
 
