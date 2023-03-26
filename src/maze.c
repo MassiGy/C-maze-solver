@@ -220,6 +220,7 @@ void *solveMaze_threaded(void *checkpoint)
         /* reload the currect coordinates each time */
         current_line = get_line(current_checkpoint->last_pos, maze.col_count);
         current_col = get_colomn(current_checkpoint->last_pos, maze.col_count);
+        maze = *(current_checkpoint->p_maze);
 
         // see if we are not on a boundry
         if (current_line >= maze.row_count || current_line < 0)
@@ -274,6 +275,9 @@ void *solveMaze_threaded(void *checkpoint)
             /* if so make sure that the son has the refrence to the mutex and the counter */
             up_thread_checkpoint.p_free_threads_count = current_checkpoint->p_free_threads_count;
             up_thread_checkpoint.lock = current_checkpoint->lock;
+
+            up_thread_checkpoint.thereis_meet_up = false;
+            up_thread_checkpoint.meet_point_reached = true;
 
             if (current_checkpoint->limited_threads)
             {
@@ -338,6 +342,9 @@ void *solveMaze_threaded(void *checkpoint)
             down_thread_checkpoint.p_free_threads_count = current_checkpoint->p_free_threads_count;
             down_thread_checkpoint.lock = current_checkpoint->lock;
 
+            down_thread_checkpoint.thereis_meet_up = false;
+            down_thread_checkpoint.meet_point_reached = true;
+
             if (current_checkpoint->limited_threads)
             {
                 /*make sure that there is a free thread before spawning one*/
@@ -400,6 +407,9 @@ void *solveMaze_threaded(void *checkpoint)
             /* make sure that the son has the refrence to the mutex and the counter */
             left_thread_checkpoint.p_free_threads_count = current_checkpoint->p_free_threads_count;
             left_thread_checkpoint.lock = current_checkpoint->lock;
+
+            left_thread_checkpoint.thereis_meet_up = false;
+            left_thread_checkpoint.meet_point_reached = true;
 
             if (current_checkpoint->limited_threads)
             {
@@ -465,6 +475,9 @@ void *solveMaze_threaded(void *checkpoint)
             right_thread_checkpoint.p_free_threads_count = current_checkpoint->p_free_threads_count;
             right_thread_checkpoint.lock = current_checkpoint->lock;
 
+            right_thread_checkpoint.thereis_meet_up = false;
+            right_thread_checkpoint.meet_point_reached = true;
+
             if (current_checkpoint->limited_threads)
             {
                 /*make sure that there is a free thread before spawning one*/
@@ -504,7 +517,6 @@ void *solveMaze_threaded(void *checkpoint)
             else
             {
                 right_thread_checkpoint.current_track_record = push_list(right_thread_checkpoint.current_track_record, current_checkpoint->last_pos + 1);
-
                 pthread_create(&right_thread, NULL, &solveMaze_threaded, &right_thread_checkpoint);
             }
         }
@@ -531,6 +543,9 @@ void *solveMaze_threaded(void *checkpoint)
             constructed_path = listToArray(up_thread_checkpoint.current_track_record, constructed_path_length);
 
             does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
+
+
+          
 
             if (does_lead_to_end)
             {
@@ -588,6 +603,8 @@ void *solveMaze_threaded(void *checkpoint)
 
             does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
 
+           
+          
             if (does_lead_to_end)
             {
                 /* replace the parent track record with the son track record */
@@ -640,6 +657,8 @@ void *solveMaze_threaded(void *checkpoint)
             constructed_path = listToArray(left_thread_checkpoint.current_track_record, constructed_path_length);
 
             does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
+
+          
 
             if (does_lead_to_end)
             {
@@ -696,6 +715,9 @@ void *solveMaze_threaded(void *checkpoint)
 
             does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
 
+     
+          
+
             if (does_lead_to_end)
             {
                 /* replace the parent track record with the son track record */
@@ -734,12 +756,16 @@ void *solveMaze_threaded(void *checkpoint)
                 int current_entry_symbol = ENTRY_INIT_CODE + (current_checkpoint->id) * 2;
                 int current_end_symbol = END_INIT_CODE + (current_checkpoint->id) * 2;
 
-                findKeyPoint(&maze, current_entry_symbol, current_end_symbol);
+                findKeyPoint(current_checkpoint->p_maze, current_entry_symbol, current_end_symbol);
+                maze = *(current_checkpoint->p_maze);
 
                 // move the head to the end
                 current_checkpoint->path_to_meet_point = copy_list(current_checkpoint->current_track_record);
+                current_checkpoint->current_track_record = push_list(current_checkpoint->current_track_record, current_checkpoint->last_pos);
                 current_checkpoint->current_track_record = pop_list(current_checkpoint->current_track_record);
+
                 current_checkpoint->thereis_meet_up = false;
+                current_checkpoint->meet_point_reached = true;
             }
             else
             {
