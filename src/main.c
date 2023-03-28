@@ -51,6 +51,7 @@ int main(void)
     /* free everthing to prevent memory leaks */
     destroyMaze(&maze);
     sem_destroy(start_checkpoint.free_threads_count);
+    /*make sure to free the semaphore to prevent any memory leak*/
     free(start_checkpoint.free_threads_count);
 
     return 0;
