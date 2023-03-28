@@ -35,7 +35,7 @@ int main(void)
     start_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(start_checkpoint.lock, NULL);
 
-    int limit = 20;
+    int limit = 0;
     start_checkpoint.p_free_threads_count = &limit;
 
     
