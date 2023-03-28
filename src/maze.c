@@ -20,8 +20,6 @@ void findKeyPoint(maze_t *playground, int entrySymbol, int endSymbol)
     }
 }
 
-
-
 void loadMaze(maze_t *playground)
 {
     assert(playground != NULL);
@@ -291,6 +289,7 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* otherwise, solve this maze part recursively */
                     is_up_thread_launched = false;
+                    up_thread_checkpoint.last_pos = current_checkpoint->last_pos;
                     solveMaze_rec(&maze,
                                   &(up_thread_checkpoint.current_track_record),
                                   get_line(up_thread_checkpoint.last_pos, maze.col_count),
@@ -356,6 +355,7 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* otherwise, solve this maze part recursively */
                     is_down_thread_launched = false;
+                    up_thread_checkpoint.last_pos = current_checkpoint->last_pos;
                     solveMaze_rec(&maze,
                                   &(down_thread_checkpoint.current_track_record),
                                   get_line(down_thread_checkpoint.last_pos, maze.col_count),
@@ -420,6 +420,7 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* otherwise solve this maze part recursively */
                     is_left_thread_launched = false;
+                    up_thread_checkpoint.last_pos = current_checkpoint->last_pos;
                     solveMaze_rec(&maze,
                                   &(left_thread_checkpoint.current_track_record),
                                   get_line(left_thread_checkpoint.last_pos, maze.col_count),
@@ -484,7 +485,7 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /*otherwise, solve this part of the maze recursively*/
                     is_right_thread_launched = false;
-
+                    up_thread_checkpoint.last_pos = current_checkpoint->last_pos;
                     solveMaze_rec(&maze,
                                   &(right_thread_checkpoint.current_track_record),
                                   get_line(right_thread_checkpoint.last_pos, maze.col_count),
@@ -702,10 +703,7 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
         return;
 
     int visitedNodesCount = getLength(*p_visitedNodes);
-    // make sure that we are not at the entry again.
-    if (p_playground->grid[current_line][current_col] == 2 && visitedNodesCount > 1)
-        return;
-
+   
     // make sure that the current point is not on the track record
     int *current_track_record = listToArray(*p_visitedNodes, visitedNodesCount);
     bool is_current_tracked = liniar_search_array(current_track_record, visitedNodesCount, current_line * p_playground->col_count + current_col);
