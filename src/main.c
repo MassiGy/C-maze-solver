@@ -42,11 +42,11 @@ int main(void)
     fst_checkpoint.p_maze = &fst_maze;
     fst_checkpoint.last_pos = fst_maze.entry[0] * fst_maze.col_count + fst_maze.entry[1];
 
-    fst_checkpoint.limited_threads = false;
+    fst_checkpoint.limited_threads = true;
     fst_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(fst_checkpoint.lock, NULL);
 
-    int fst_limit = 2;
+    int fst_limit = 6;
     fst_checkpoint.p_free_threads_count = &fst_limit;
 
     /* populate the snd player start checkpoint */
@@ -57,11 +57,11 @@ int main(void)
     snd_checkpoint.p_maze = &snd_maze;
     snd_checkpoint.last_pos = snd_maze.entry[0] * snd_maze.col_count + snd_maze.entry[1];
 
-    snd_checkpoint.limited_threads = false;
+    snd_checkpoint.limited_threads = true;
     snd_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(snd_checkpoint.lock, NULL);
 
-    int snd_limit = 2;
+    int snd_limit = 6;
     snd_checkpoint.p_free_threads_count = &snd_limit;
 
     /* fire up the players in two threads */
@@ -107,7 +107,9 @@ int main(void)
     fst_checkpoint.p_maze = &fst_maze;
     fst_checkpoint.last_pos = fst_maze.entry[0] * fst_maze.col_count + fst_maze.entry[1];
 
-    fst_checkpoint.limited_threads = false;
+    fst_checkpoint.limited_threads = true;
+    fst_limit = 6;
+    fst_checkpoint.p_free_threads_count = &fst_limit;
 
     fst_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(fst_checkpoint.lock, NULL);
@@ -119,7 +121,10 @@ int main(void)
     snd_checkpoint.p_maze = &snd_maze;
     snd_checkpoint.last_pos = snd_maze.entry[0] * snd_maze.col_count + snd_maze.entry[1];
 
-    snd_checkpoint.limited_threads = false;
+    snd_checkpoint.limited_threads = true;
+    snd_limit = 6;
+    snd_checkpoint.p_free_threads_count = &snd_limit;
+    
 
     snd_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(snd_checkpoint.lock, NULL);
