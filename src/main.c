@@ -1,6 +1,11 @@
 // main.c source code
 #include "../headers/main.h"
 
+/*
+rec: ./main  40.17s user 0.07s system 197% cpu 20.344 total
+
+*/
+
 int main(void)
 {
 
@@ -48,11 +53,11 @@ int main(void)
     fst_checkpoint.p_maze = &fst_maze;
     fst_checkpoint.last_pos = fst_maze.entry[0] * fst_maze.col_count + fst_maze.entry[1];
 
-    fst_checkpoint.limited_threads = true;
+    fst_checkpoint.limited_threads = false;
     fst_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(fst_checkpoint.lock, NULL);
 
-    int fst_limit = 0;
+    int fst_limit = 20;
     fst_checkpoint.p_free_threads_count = &fst_limit;
 
     checkpoint_t snd_checkpoint;
@@ -62,11 +67,11 @@ int main(void)
     snd_checkpoint.p_maze = &snd_maze;
     snd_checkpoint.last_pos = snd_maze.entry[0] * snd_maze.col_count + snd_maze.entry[1];
 
-    snd_checkpoint.limited_threads = true;
+    snd_checkpoint.limited_threads = false;
     snd_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(snd_checkpoint.lock, NULL);
 
-    int snd_limit = 0;
+    int snd_limit = 20;
     snd_checkpoint.p_free_threads_count = &snd_limit;
 
     pthread_create(&fst, NULL, &solveMaze_threaded, &fst_checkpoint);
@@ -87,6 +92,8 @@ int main(void)
         print_list(snd_checkpoint.current_track_record);
         snd_checkpoint.current_track_record = destroy_list(snd_checkpoint.current_track_record);
     }
+    pthread_mutex_destroy(fst_checkpoint.lock);
+    pthread_mutex_destroy(snd_checkpoint.lock);
 
     findKeyPoint(&fst_maze, 2, 4);
     findKeyPoint(&snd_maze, 2, 6);
@@ -96,7 +103,10 @@ int main(void)
     fst_checkpoint.p_maze = &fst_maze;
     fst_checkpoint.last_pos = fst_maze.entry[0] * fst_maze.col_count + fst_maze.entry[1];
 
-    fst_checkpoint.limited_threads = true;
+    fst_checkpoint.limited_threads = false;
+
+    fst_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
+    pthread_mutex_init(fst_checkpoint.lock, NULL);
 
     snd_checkpoint.current_track_record = create_node_list(snd_maze.entry[0] * snd_maze.col_count + snd_maze.entry[1]);
     snd_checkpoint.direction = -(snd_maze.col_count);
@@ -104,7 +114,10 @@ int main(void)
     snd_checkpoint.p_maze = &snd_maze;
     snd_checkpoint.last_pos = snd_maze.entry[0] * snd_maze.col_count + snd_maze.entry[1];
 
-    snd_checkpoint.limited_threads = true;
+    snd_checkpoint.limited_threads = false;
+
+    snd_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
+    pthread_mutex_init(snd_checkpoint.lock, NULL);
 
     pthread_create(&fst, NULL, &solveMaze_threaded, &fst_checkpoint);
     pthread_create(&snd, NULL, &solveMaze_threaded, &snd_checkpoint);

@@ -1,1 +1,1 @@
-7 ../dist/maze.txt
+17 ../dist/maze.txt
