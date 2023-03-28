@@ -9,6 +9,11 @@ int main(void)
         We basicaly init our semaphore to the number of threads that we set as our limit, then each time we fire up a threads
         we wait on the semaphore to decrement its value atomicaly. In the other hand, each time we join a thread, we signal/post
         our semaphore to increment it atomicaly.
+
+        Note: just make sure that you give a high enough value for the semaphore init function, since otherwise can cause a deadlock
+        because the thread that is called can be waiting to spawn another thread but it needs to pop out so as a new thread can be fired up.
+
+        So if all threads fall in this situation, it is a deadlock.
     */
 
     /* instaciate our maze, and then load it from the maze.txt file.*/

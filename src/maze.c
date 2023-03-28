@@ -383,6 +383,12 @@ void *solveMaze_threaded(void *checkpoint)
 
             pthread_join(up_thread, NULL);
 
+            /* if the threads are limited, then signal on the semaphore */
+            if (current_checkpoint->limited_threads)
+            {
+                sem_post(current_checkpoint->free_threads_count);
+            }
+
             /* see if the constructed path by this thread leads to the end */
             constructed_path_length = getLength(up_thread_checkpoint.current_track_record);
             constructed_path = listToArray(up_thread_checkpoint.current_track_record, constructed_path_length);
@@ -419,6 +425,11 @@ void *solveMaze_threaded(void *checkpoint)
         {
 
             pthread_join(down_thread, NULL);
+            /* if the threads are limited, then signal on the semaphore */
+            if (current_checkpoint->limited_threads)
+            {
+                sem_post(current_checkpoint->free_threads_count);
+            }
 
             /* see if the constructed path by this thread leads to the end */
             constructed_path_length = getLength(down_thread_checkpoint.current_track_record);
@@ -453,6 +464,11 @@ void *solveMaze_threaded(void *checkpoint)
         {
 
             pthread_join(left_thread, NULL);
+            /* if the threads are limited, then signal on the semaphore */
+            if (current_checkpoint->limited_threads)
+            {
+                sem_post(current_checkpoint->free_threads_count);
+            }
 
             /* see if the constructed path by this thread leads to the end */
             constructed_path_length = getLength(left_thread_checkpoint.current_track_record);
@@ -489,6 +505,11 @@ void *solveMaze_threaded(void *checkpoint)
         {
 
             pthread_join(right_thread, NULL);
+            /* if the threads are limited, then signal on the semaphore */
+            if (current_checkpoint->limited_threads)
+            {
+                sem_post(current_checkpoint->free_threads_count);
+            }
 
             /* see if the constructed path by this thread leads to the end */
             constructed_path_length = getLength(right_thread_checkpoint.current_track_record);
@@ -527,11 +548,6 @@ void *solveMaze_threaded(void *checkpoint)
         current_checkpoint->end_reached = (current_checkpoint->last_pos == maze.end[0] * maze.col_count + maze.end[1]);
     }
 
-    /* if threads are limited and reached this point, signal the semaphore to increment its val*/
-    if (current_checkpoint->limited_threads)
-    {
-        sem_post(current_checkpoint->free_threads_count);
-    }
 
     /* return null to follow the pthread_create routine schemma*/
     return NULL;
@@ -547,10 +563,7 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
         return;
 
     int visitedNodesCount = getLength(*p_visitedNodes);
-    // make sure that we are not at the entry again.
-    if (p_playground->grid[current_line][current_col] == 2 && visitedNodesCount > 1)
-        return;
-
+   
     // make sure that the current point is not on the track record
     int *current_track_record = listToArray(*p_visitedNodes, visitedNodesCount);
     bool is_current_tracked = liniar_search_array(current_track_record, visitedNodesCount, current_line * p_playground->col_count + current_col);
@@ -561,7 +574,9 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
         return;
     }
     else
+    {
         free(current_track_record);
+    }
 
     *p_visitedNodes = push_list(*p_visitedNodes, current_line * p_playground->col_count + current_col);
     visitedNodesCount++;
@@ -577,6 +592,7 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     if (current_line + 1 < p_playground->row_count)
     {
         visitedNodesCopy = copy_list(*p_visitedNodes);
+        /*call recursively the function with a new list and a new position*/
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line + 1, current_col);
 
         copySize = getLength(visitedNodesCopy);
@@ -610,6 +626,7 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     if (current_col + 1 < p_playground->col_count)
     {
         visitedNodesCopy = copy_list(*p_visitedNodes);
+        /*call recursively the function with a new list and a new position*/
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line, current_col + 1);
 
         copySize = getLength(visitedNodesCopy);
@@ -643,6 +660,7 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     if (current_line - 1 >= 0)
     {
         visitedNodesCopy = copy_list(*p_visitedNodes);
+        /*call recursively the function with a new list and a new position*/
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line - 1, current_col);
 
         copySize = getLength(visitedNodesCopy);
@@ -676,6 +694,7 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     if (current_col - 1 >= 0)
     {
         visitedNodesCopy = copy_list(*p_visitedNodes);
+        /*call recursively the function with a new list and a new position*/
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line, current_col - 1);
 
         copySize = getLength(visitedNodesCopy);
@@ -716,3 +735,4 @@ void destroyMaze(maze_t *p_playground)
     destroyMatrix(&(p_playground->grid), p_playground->row_count, p_playground->col_count);
     return;
 }
+
