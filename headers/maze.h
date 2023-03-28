@@ -27,8 +27,7 @@ struct checkpoint
 typedef struct maze maze_t;
 typedef struct checkpoint checkpoint_t;
 
-void findStart(maze_t *playground);
-void findEnd(maze_t *playground);
+void findKeyPoint(maze_t *playground, int entrySymbol, int endSymbol);
 void loadMaze(maze_t *p_playground);
 void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_line, int current_col);
 void *solveMaze_threaded(void *checkpoint);

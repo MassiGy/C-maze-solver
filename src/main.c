@@ -7,8 +7,8 @@ int main(void)
     maze_t maze;
     loadMaze(&maze);
     printMatrix(&(maze.grid), maze.row_count, maze.col_count);
-    findStart(&maze);
-    findEnd(&maze);
+    findKeyPoint(&maze, 2, 3);
+
 
     printf("Entrée : ");
     for (int i = 0; i < 2; i++)
@@ -41,10 +41,6 @@ int main(void)
     
 
     solveMaze_threaded(&start_checkpoint);
-
-
-    // solveMaze_rec(&maze,&(start_checkpoint.current_track_record), 1, 2);
-
 
 
 

@@ -1,36 +1,26 @@
 #include "../headers/maze.h"
 
-void findStart(maze_t *playground)
+void findKeyPoint(maze_t *playground, int entrySymbol, int endSymbol)
 {
     for (int i = 0; i < playground->row_count; i++)
     {
         for (int j = 0; j < playground->col_count; j++)
         {
-            if (playground->grid[i][j] == 2)
+            if (playground->grid[i][j] == entrySymbol)
             {
                 playground->entry[0] = i;
                 playground->entry[1] = j;
-                return;
+            }
+            if (playground->grid[i][j] == endSymbol)
+            {
+                playground->end[0] = i;
+                playground->end[1] = j;
             }
         }
     }
 }
 
-void findEnd(maze_t *playground)
-{
-    for (int i = 0; i < playground->row_count; i++)
-    {
-        for (int j = 0; j < playground->col_count; j++)
-        {
-            if (playground->grid[i][j] == 3)
-            {
-                playground->end[0] = i;
-                playground->end[1] = j;
-                return;
-            }
-        }
-    }
-}
+
 
 void loadMaze(maze_t *playground)
 {
