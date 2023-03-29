@@ -1,176 +1,74 @@
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
-0	3	1	1	0	1	0	1	1	1	0	1	1	1	0	4	0	
-0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	
-0	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	0	
-0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	1	0	
-0	1	0	1	1	2	0	1	0	1	1	1	1	1	0	1	0	
-0	0	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	
-0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	
-0	1	0	1	0	1	0	1	0	0	0	1	0	0	0	1	0	
-0	1	0	1	0	1	0	1	0	1	0	1	1	1	0	1	0	
-0	0	0	1	0	0	0	1	0	1	0	0	0	1	0	0	0	
-0	1	1	1	0	1	1	1	1	1	1	1	0	1	6	1	0	
-0	5	0	1	0	1	0	0	0	0	0	1	0	0	0	1	0	
-0	1	0	1	0	1	1	1	0	1	0	1	1	1	0	1	0	
-0	0	0	1	0	1	0	0	0	1	0	1	0	0	0	0	0	
-0	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	
+0	5	1	1	1	1	0	1	0	1	0	
+0	1	0	1	0	1	0	1	0	1	0	
+0	1	0	1	0	1	1	1	1	1	0	
+0	0	0	0	0	2	0	0	0	0	0	
+0	1	1	1	0	1	0	1	0	1	0	
+0	1	0	0	0	1	0	1	0	4	0	
+0	1	0	1	1	1	1	1	1	1	0	
+0	1	0	1	0	0	0	0	0	0	0	
+0	3	1	1	1	1	1	1	1	6	0	
+0	0	0	0	0	0	0	0	0	0	0	
 
-fst: Entry[1][1]	-->	 End[5][5]
+fst: Entry[9][1]	-->	 End[4][5]
 
-snd: Entry[12][1]	-->	 End[5][5]
-on down check (0x7ffeb323f6e8) => (5)
-on right check (0x7ffeb323f6e8) => (4)
-on down check (0x7ffeb323f6ec) => (5)
-on down check (0x7ffeb323f6e8) => (3)
-on down join (0x7ffeb323f6e8) => (4)
-on down join (0x7ffeb323f6ec) => (6)
-on right check (0x7ffeb323f6ec) => (5)
-on right check (0x7ffeb323f6e8) => (3)
-on up check (0x7ffeb323f6e8) => (2)
-on up check (0x7ffeb323f6ec) => (4)
-on down check (0x7ffeb323f6ec) => (3)
-on left check (0x7ffeb323f6ec) => (2)
-on up join (0x7ffeb323f6e8) => (3)
-on up check (0x7ffeb323f6e8) => (2)
-on left check (0x7ffeb323f6ec) => (1)
-on down check (0x7ffeb323f6e8) => (1)
-on down check (0x7ffeb323f6ec) => (0)
-on right check (0x7ffeb323f6e8) => (0)
-on left join (0x7ffeb323f6ec) => (1)
-on down join (0x7ffeb323f6ec) => (2)
-on left join (0x7ffeb323f6ec) => (3)
-on right join (0x7ffeb323f6e8) => (1)
-on right check (0x7ffeb323f6ec) => (2)
-on up join (0x7ffeb323f6e8) => (2)
-on down join (0x7ffeb323f6e8) => (3)
-on down check (0x7ffeb323f6e8) => (2)
-on right join (0x7ffeb323f6ec) => (3)
-on right check (0x7ffeb323f6e8) => (1)
-on up join (0x7ffeb323f6ec) => (4)
-on down check (0x7ffeb323f6e8) => (0)
-on right join (0x7ffeb323f6ec) => (5)
-on down join (0x7ffeb323f6e8) => (1)
-on right join (0x7ffeb323f6e8) => (2)
-on down join (0x7ffeb323f6e8) => (3)
-on up check (0x7ffeb323f6e8) => (2)
-on right check (0x7ffeb323f6e8) => (1)
-on right join (0x7ffeb323f6e8) => (2)
-on up join (0x7ffeb323f6e8) => (3)
-on right join (0x7ffeb323f6e8) => (4)
-on right check (0x7ffeb323f6e8) => (3)
-on right join (0x7ffeb323f6e8) => (4)
-on down join (0x7ffeb323f6e8) => (5)
-on right join (0x7ffeb323f6e8) => (6)
+snd: Entry[1][1]	-->	 End[4][5]
 
 Printing the fst track record to the meetup point: 
-0x7f86ac000c30 -> 18
-0x7f86ac000c10 -> 19
-0x7f86ac000bf0 -> 20
-0x7f86ac000bd0 -> 37
-0x7f86ac000bb0 -> 54
-0x7f86ac000b70 -> 71
-0x7f86ac000ce0 -> 88
-0x7f86ac000d00 -> 89
-0x7f86b0000f60 -> 90
+0x7f7cdc000c40 -> 100
+0x7f7cdc000c60 -> 101
+0x7f7cdc000c80 -> 102
+0x7f7cdc000ca0 -> 91
+0x7f7cdc000cc0 -> 80
+0x7f7cdc000ce0 -> 81
+0x7f7cdc000d00 -> 82
+0x7f7cdc000d20 -> 71
+0x7f7cc8000ba0 -> 60
+0x7f7cc8000bc0 -> 49
 
 
 Printing the snd track record to the meetup point: 
-0x7f86a8000cc0 -> 205
-0x7f86a8000ca0 -> 188
-0x7f86a8000c80 -> 189
-0x7f86a8000c60 -> 190
-0x7f86a8000c40 -> 173
-0x7f86a8000d40 -> 156
-0x7f86a8000ba0 -> 139
-0x7f86a8000bc0 -> 122
-0x7f86a8000d20 -> 105
-0x7f86a8000ec0 -> 88
-0x7f86a8000ee0 -> 89
-0x7f8698000cc0 -> 90
+0x7f7cdc000bb0 -> 12
+0x7f7cd8000bf0 -> 13
+0x7f7cd8000bd0 -> 14
+0x7f7cd8000bb0 -> 15
+0x7f7cd8000b90 -> 16
+0x7f7cd8000d50 -> 27
+0x7f7cd4000b70 -> 38
+0x7f7cd4000c80 -> 49
 
 
-fst: Entry[5][5]	-->	 End[1][15]
+fst: Entry[4][5]	-->	 End[6][9]
 
-snd: Entry[5][5]	-->	 End[11][14]
-on down check (0x7ffeb323f6e8) => (5)
-on down check (0x7ffeb323f6ec) => (5)
-on left check (0x7ffeb323f6ec) => (4)
-on left check (0x7ffeb323f6e8) => (4)
-on right check (0x7ffeb323f6ec) => (3)
-on right check (0x7ffeb323f6e8) => (3)
-on up check (0x7ffeb323f6ec) => (2)
-on down check (0x7ffeb323f6ec) => (1)
-on down check (0x7ffeb323f6e8) => (2)
-on up check (0x7ffeb323f6e8) => (1)
-on down check (0x7ffeb323f6ec) => (0)
-on left check (0x7ffeb323f6e8) => (0)
-on up join (0x7ffeb323f6ec) => (1)
-on left join (0x7ffeb323f6e8) => (1)
-on down join (0x7ffeb323f6ec) => (2)
-on down join (0x7ffeb323f6e8) => (2)
-on right join (0x7ffeb323f6e8) => (3)
-on right join (0x7ffeb323f6ec) => (3)
-on down join (0x7ffeb323f6e8) => (4)
-on down join (0x7ffeb323f6ec) => (4)
-on left join (0x7ffeb323f6ec) => (5)
-on up join (0x7ffeb323f6e8) => (5)
-on left join (0x7ffeb323f6e8) => (6)
+snd: Entry[4][5]	-->	 End[9][9]
 
 Printing the fst track record to the end : 
-0x7f868c003860 -> 90
-0x7f868c0036c0 -> 89
-0x7f868c003ce0 -> 88
-0x7f868c003c00 -> 71
-0x7f868c003ac0 -> 71
-0x7f868c003ae0 -> 54
-0x7f868c003b00 -> 55
-0x7f868c003c60 -> 56
-0x7f868c003d00 -> 57
-0x7f868c003c20 -> 58
-0x7f868c003b40 -> 59
-0x7f868c003a60 -> 60
-0x7f868c003680 -> 77
-0x7f868c003ea0 -> 94
-0x7f868c003dc0 -> 95
-0x7f868c003e60 -> 96
-0x7f868c003e80 -> 113
-0x7f868c003d20 -> 130
-0x7f868c003c40 -> 131
-0x7f868c003b60 -> 132
-0x7f868c003a80 -> 133
-0x7f868c0036a0 -> 134
-0x7f868c003cc0 -> 117
-0x7f868c003c80 -> 100
-0x7f868c003b20 -> 83
-0x7f868c0039a0 -> 66
-0x7f868c003980 -> 49
-0x7f868c003ca0 -> 32
+0x7f7ccc000c10 -> 49
+0x7f7ccc000bf0 -> 60
+0x7f7ccc000bd0 -> 71
+0x7f7ccc000bb0 -> 82
+0x7f7ccc000b90 -> 83
+0x7f7ccc000dc0 -> 84
+0x7f7ccc000de0 -> 85
+0x7f7ccc000e00 -> 86
+0x7f7ccc000e20 -> 75
+0x7f7cb4000ba0 -> 64
+0x7f7cb4000bc0 -> 53
 
 
 Printing the snd track record to the end : 
-0x7f8690002e10 -> 90
-0x7f8690002df0 -> 89
-0x7f8690002dd0 -> 88
-0x7f8690002db0 -> 71
-0x7f8690002d90 -> 54
-0x7f8690002d70 -> 55
-0x7f8690002d50 -> 56
-0x7f8690003010 -> 57
-0x7f8690002f30 -> 58
-0x7f8690002f50 -> 59
-0x7f8690002f70 -> 60
-0x7f8690002f90 -> 77
-0x7f8690002fb0 -> 94
-0x7f8690002fd0 -> 95
-0x7f8690002ff0 -> 96
-0x7f8690002f10 -> 113
-0x7f8690002e30 -> 130
-0x7f8690002e50 -> 147
-0x7f8690002e70 -> 164
-0x7f8690002e90 -> 165
-0x7f8690002eb0 -> 166
-0x7f8690002ed0 -> 183
-0x7f8690002ef0 -> 200
-0x7f86900030a0 -> 201
+0x7f7cdc001000 -> 49
+0x7f7cdc001020 -> 60
+0x7f7cdc001040 -> 71
+0x7f7cdc001060 -> 82
+0x7f7cdc001080 -> 81
+0x7f7cdc0010a0 -> 80
+0x7f7cdc0010c0 -> 91
+0x7f7cdc0010e0 -> 102
+0x7f7cdc001100 -> 103
+0x7f7cc4000be0 -> 104
+0x7f7cc4000c00 -> 105
+0x7f7cc4000c60 -> 106
+0x7f7cc4000c80 -> 107
+0x7f7cc4000ca0 -> 108
 
