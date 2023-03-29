@@ -191,12 +191,12 @@ int main(void)
     start_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(start_checkpoint.lock, NULL);
 
-    int limit = 3;
+    int limit = 0;
     start_checkpoint.p_free_threads_count = &limit;
 
     solveMaze_threaded(&start_checkpoint);
 
-    if (getLength(start_checkpoint.current_track_record) >= 1)
+    if (getLength(start_checkpoint.current_track_record) >= 0)
     {
         print_list(start_checkpoint.current_track_record);
         start_checkpoint.current_track_record = destroy_list(start_checkpoint.current_track_record);
