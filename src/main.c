@@ -4,10 +4,10 @@
  * when thereis no meetup, everything is ok
  *
  * on meetup mode,
- * When the threads are not limited, it goes through the meet point and then to the end, but it goes way beyond the end.
  * When the threads are limited, and its on recursive, everything is ok.
- * When the threads are limited, and its not on recursive thereis a seg fault.
- *
+ * When the threads are not limited, it goes through the meet point and then to the end, but it goes way beyond the end.
+ * When the threads are limited, and its not only recursive, it goes through the meet point and then to the end, but it goes way beyond the end. (unless you give it
+ * a small limit count, which will cause a seg fault.)
  *
  */
 
@@ -24,37 +24,11 @@ int main(void)
     findKeyPoint(&fst_maze, 3, 2);
     findKeyPoint(&snd_maze, 5, 2);
 
-    
+    /* print the entry/end for the two players */
+    printf("\nfst: Entry[%d][%d]\t-->\t End[%d][%d]\n", fst_maze.entry[0], fst_maze.entry[1], fst_maze.end[0], fst_maze.end[1]);
+    // printf("\nsnd: Entry[%d][%d]\t-->\t End[%d][%d]\n", snd_maze.entry[0], snd_maze.entry[1], snd_maze.end[0], snd_maze.end[1]);
 
-    printf("Entrée : ");
-    for (int i = 0; i < 2; i++)
-    {
-        printf("[%d]", fst_maze.entry[i]);
-    }
-
-    printf("\nSortie : ");
-    for (int i = 0; i < 2; i++)
-    {
-        printf("[%d]", fst_maze.end[i]);
-    }
-
-    printf("\n");
-
-    printf("Entrée : ");
-    for (int i = 0; i < 2; i++)
-    {
-        printf("[%d]", snd_maze.entry[i]);
-    }
-
-    printf("\nSortie : ");
-    for (int i = 0; i < 2; i++)
-    {
-        printf("[%d]", snd_maze.end[i]);
-    }
-
-    printf("\n");
-
-    int thread_limit_count = 2;
+    int thread_limit_count = 10;
 
     checkpoint_t fst_checkpoint;
     fst_checkpoint.current_track_record = create_node_list(fst_maze.entry[0] * fst_maze.col_count + fst_maze.entry[1]);
@@ -66,8 +40,9 @@ int main(void)
     fst_checkpoint.id = 0;
     fst_checkpoint.thereis_meet_up = true;
     fst_checkpoint.meet_point_reached = false;
+    bool fst_thereis_meetup = true; // this is for the printing
 
-    fst_checkpoint.limited_threads = true;
+    fst_checkpoint.limited_threads = false;
     fst_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(fst_checkpoint.lock, NULL);
 
@@ -84,6 +59,7 @@ int main(void)
     // snd_checkpoint.id = 1;
     // snd_checkpoint.thereis_meet_up = true;
     // snd_checkpoint.meet_point_reached = false;
+    // bool snd_thereis_meetup = true;
 
     // snd_checkpoint.limited_threads = true;
     // snd_checkpoint.lock = fst_checkpoint.lock;
@@ -100,15 +76,15 @@ int main(void)
 
     printf("~~~~~~~~~~~~~~\n");
 
-    if (getLength(fst_checkpoint.path_to_meet_point) >= 1)
+    if (fst_thereis_meetup && getLength(fst_checkpoint.path_to_meet_point) >= 1)
     {
         print_list(fst_checkpoint.path_to_meet_point);
         fst_checkpoint.path_to_meet_point = destroy_list(fst_checkpoint.path_to_meet_point);
     }
 
+    printf("############\n");
     if (getLength(fst_checkpoint.current_track_record) >= 1)
     {
-        printf("############\n");
         print_list(fst_checkpoint.current_track_record);
         fst_checkpoint.current_track_record = destroy_list(fst_checkpoint.current_track_record);
     }
