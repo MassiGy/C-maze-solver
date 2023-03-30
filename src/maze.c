@@ -225,6 +225,10 @@ void *solveMaze_threaded(void *checkpoint)
             break;
 
         /*check for any other possible ways*/
+        is_up_possible = false;
+        is_down_possible = false;
+        is_left_possible = false;
+        is_right_possible = false;
         if (current_checkpoint->direction != -maze.col_count)
         {
             is_up_possible = can_go_up(current_line, current_col, &maze, current_checkpoint->current_track_record);
@@ -548,7 +552,6 @@ void *solveMaze_threaded(void *checkpoint)
         current_checkpoint->end_reached = (current_checkpoint->last_pos == maze.end[0] * maze.col_count + maze.end[1]);
     }
 
-
     /* return null to follow the pthread_create routine schemma*/
     return NULL;
 }
@@ -563,7 +566,7 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
         return;
 
     int visitedNodesCount = getLength(*p_visitedNodes);
-   
+
     // make sure that the current point is not on the track record
     int *current_track_record = listToArray(*p_visitedNodes, visitedNodesCount);
     bool is_current_tracked = liniar_search_array(current_track_record, visitedNodesCount, current_line * p_playground->col_count + current_col);
@@ -735,4 +738,3 @@ void destroyMaze(maze_t *p_playground)
     destroyMatrix(&(p_playground->grid), p_playground->row_count, p_playground->col_count);
     return;
 }
-
