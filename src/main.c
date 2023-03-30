@@ -35,12 +35,13 @@ int main(void)
     start_checkpoint.p_maze = &maze;
     start_checkpoint.last_pos = maze.entry[0] * maze.col_count + maze.entry[1];
 
-    start_checkpoint.limited_threads = true;
+    start_checkpoint.limited_threads = false;
     start_checkpoint.free_threads_count = malloc(sizeof(sem_t));
     /* init our semaphore */
     sem_init(start_checkpoint.free_threads_count, 0, 10);
 
     solveMaze_threaded(&start_checkpoint);
+    // solveMaze_rec(&maze, &(start_checkpoint.current_track_record), maze.entry[0], maze.entry[1]);
 
     if (getLength(start_checkpoint.current_track_record) >= 1)
     {
