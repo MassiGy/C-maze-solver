@@ -174,18 +174,17 @@ void *solveMaze_threaded(void *checkpoint)
     checkpoint_t *current_checkpoint = (checkpoint_t *)checkpoint;
     maze_t maze = *(current_checkpoint->p_maze);
 
-    // get the coordinates
-    int current_line = get_line(current_checkpoint->last_pos, maze.col_count);
-    int current_col = get_colomn(current_checkpoint->last_pos, maze.col_count);
-
+    // the coordinates
+    int current_line;
+    int current_col;
+   
     // make sure that the parent is on its track record
     assert(current_checkpoint->current_track_record != NULL);
 
-    int next_move;
-    bool is_up_possible = false;
-    bool is_down_possible = false;
-    bool is_left_possible = false;
-    bool is_right_possible = false;
+    bool is_up_possible;
+    bool is_down_possible;
+    bool is_left_possible;
+    bool is_right_possible;
     pthread_t up_thread, down_thread, left_thread, right_thread;
     checkpoint_t up_thread_checkpoint, down_thread_checkpoint, left_thread_checkpoint, right_thread_checkpoint;
 
@@ -223,9 +222,6 @@ void *solveMaze_threaded(void *checkpoint)
         /* make sure that we are not blocked */
         if (maze.grid[current_line][current_col] == 0)
             break;
-
-        /* calc the next move to see if any of the possible ways is also the parent way */
-        next_move = current_checkpoint->last_pos + current_checkpoint->direction;
 
         /*check for any other possible ways*/
         is_up_possible = false;
@@ -299,12 +295,13 @@ void *solveMaze_threaded(void *checkpoint)
                 }
                 else
                 {
+                    /* if there is no free thread,  make the is_thread_launched flag down.*/
                     is_up_thread_launched = false;
                 }
             }
             else
             {
-                /* push the next son move to its track record */
+                /* if the threads are not limited, juste fire up a new one  */
                 up_thread_checkpoint.current_track_record = push_list(up_thread_checkpoint.current_track_record, current_checkpoint->last_pos - (maze.col_count));
                 pthread_create(&up_thread, NULL, &solveMaze_threaded, &up_thread_checkpoint);
             }
@@ -359,11 +356,13 @@ void *solveMaze_threaded(void *checkpoint)
                 }
                 else
                 {
+                    /* if there is no free thread,  make the is_thread_launched flag down.*/
                     is_down_thread_launched = false;
                 }
             }
             else
             {
+                /* if the threads are not limited, juste fire up a new one  */
                 /* push the next son move to its track record */
                 down_thread_checkpoint.current_track_record = push_list(down_thread_checkpoint.current_track_record, current_checkpoint->last_pos + maze.col_count);
                 pthread_create(&down_thread, NULL, &solveMaze_threaded, &down_thread_checkpoint);
@@ -418,11 +417,13 @@ void *solveMaze_threaded(void *checkpoint)
                 }
                 else
                 {
+                    /* if there is no free thread,  make the is_thread_launched flag down.*/
                     is_left_thread_launched = false;
                 }
             }
             else
             {
+                /* if the threads are not limited, juste fire up a new one  */
                 /* push the next son move to its track record */
                 left_thread_checkpoint.current_track_record = push_list(left_thread_checkpoint.current_track_record, current_checkpoint->last_pos - 1);
                 pthread_create(&left_thread, NULL, &solveMaze_threaded, &left_thread_checkpoint);
@@ -477,11 +478,13 @@ void *solveMaze_threaded(void *checkpoint)
                 }
                 else
                 {
+                    /* if there is no free thread,  make the is_thread_launched flag down.*/
                     is_right_thread_launched = false;
                 }
             }
             else
             {
+                /* if the threads are not limited, juste fire up a new one  */
                 /* push the next son move to its track record */
                 right_thread_checkpoint.current_track_record = push_list(right_thread_checkpoint.current_track_record, current_checkpoint->last_pos + 1);
                 pthread_create(&right_thread, NULL, &solveMaze_threaded, &right_thread_checkpoint);
@@ -489,7 +492,7 @@ void *solveMaze_threaded(void *checkpoint)
         }
 
         /* if any thread gets spawned, we will wait for it */
-        if (is_up_possible)
+        if (is_up_possible && !(current_checkpoint->end_reached))
         {
 
             if (current_checkpoint->limited_threads)
@@ -526,33 +529,23 @@ void *solveMaze_threaded(void *checkpoint)
             constructed_path = listToArray(up_thread_checkpoint.current_track_record, constructed_path_length);
 
             does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
+            free(constructed_path);
 
             if (does_lead_to_end)
             {
-
                 /* replace the parent track record with the son track record */
                 destroy_list(current_checkpoint->current_track_record);
                 current_checkpoint->current_track_record = up_thread_checkpoint.current_track_record;
-
-                /*make the direction null, to halt the parent*/
-                current_checkpoint->direction = 0;
                 current_checkpoint->end_reached = true;
-                current_checkpoint->last_pos = maze.end[0] * maze.col_count + maze.end[1];
-
-                /* free the array */
-                free(constructed_path);
-                /*ignore the following and break out from the loop */
-                break;
             }
             else
             {
                 /* just free everything related to the thread */
                 destroy_list(up_thread_checkpoint.current_track_record);
-                free(constructed_path);
             }
         }
 
-        if (is_down_possible)
+        if (is_down_possible && !(current_checkpoint->end_reached))
         {
 
             if (current_checkpoint->limited_threads)
@@ -591,31 +584,22 @@ void *solveMaze_threaded(void *checkpoint)
             constructed_path = listToArray(down_thread_checkpoint.current_track_record, constructed_path_length);
 
             does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
+            free(constructed_path);
 
             if (does_lead_to_end)
             {
                 /* replace the parent track record with the son track record */
                 destroy_list(current_checkpoint->current_track_record);
                 current_checkpoint->current_track_record = down_thread_checkpoint.current_track_record;
-
-                /*make the direction null, to halt the parent*/
-                current_checkpoint->direction = 0;
                 current_checkpoint->end_reached = true;
-                current_checkpoint->last_pos = maze.end[0] * maze.col_count + maze.end[1];
-
-                /* free the array */
-                free(constructed_path);
-                /*ignore the following and break out from the loop */
-                break;
             }
             else
             {
                 /* just free everything related to the thread */
                 destroy_list(down_thread_checkpoint.current_track_record);
-                free(constructed_path);
             }
         }
-        if (is_left_possible)
+        if (is_left_possible  && !(current_checkpoint->end_reached))
         {
             if (current_checkpoint->limited_threads)
             {
@@ -652,33 +636,24 @@ void *solveMaze_threaded(void *checkpoint)
             constructed_path = listToArray(left_thread_checkpoint.current_track_record, constructed_path_length);
 
             does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
+            free(constructed_path);
 
             if (does_lead_to_end)
             {
                 /* replace the parent track record with the son track record */
                 destroy_list(current_checkpoint->current_track_record);
                 current_checkpoint->current_track_record = left_thread_checkpoint.current_track_record;
-
-                /*make the direction null, to halt the parent*/
-                current_checkpoint->direction = 0;
                 current_checkpoint->end_reached = true;
-                current_checkpoint->last_pos = maze.end[0] * maze.col_count + maze.end[1];
-
-                /* free the array */
-                free(constructed_path);
-                /*ignore the following and break out from the loop */
-                break;
             }
             else
             {
 
                 /* just free everything related to the thread */
                 destroy_list(left_thread_checkpoint.current_track_record);
-                free(constructed_path);
             }
         }
 
-        if (is_right_possible)
+        if (is_right_possible  && !(current_checkpoint->end_reached))
         {
             if (current_checkpoint->limited_threads)
             {
@@ -716,34 +691,35 @@ void *solveMaze_threaded(void *checkpoint)
             constructed_path = listToArray(right_thread_checkpoint.current_track_record, constructed_path_length);
 
             does_lead_to_end = liniar_search_array(constructed_path, constructed_path_length, maze.end[0] * maze.col_count + maze.end[1]);
+            free(constructed_path);
 
             if (does_lead_to_end)
             {
                 /* replace the parent track record with the son track record */
                 destroy_list(current_checkpoint->current_track_record);
                 current_checkpoint->current_track_record = right_thread_checkpoint.current_track_record;
-
-                /*make the direction null, to halt the parent*/
-                current_checkpoint->direction = 0;
                 current_checkpoint->end_reached = true;
-                current_checkpoint->last_pos = maze.end[0] * maze.col_count + maze.end[1];
-
-                /* free the array */
-                free(constructed_path);
-                /*ignore the following and break out from the loop */
-                break;
             }
             else
             {
                 /* just free everything related to the thread */
                 destroy_list(right_thread_checkpoint.current_track_record);
-                free(constructed_path);
             }
         }
 
+        if (current_checkpoint->end_reached)
+        {
+            /*make the direction null, to halt the parent*/
+            current_checkpoint->direction = 0;
+            current_checkpoint->last_pos = maze.end[0] * maze.col_count + maze.end[1];
+
+            /*ignore the following and break out from the loop */
+            break;
+        }
+
         /* then just continue moving according to the specified direction */
-        current_checkpoint->last_pos = next_move;
-        current_checkpoint->current_track_record = push_list(current_checkpoint->current_track_record, next_move);
+        current_checkpoint->last_pos = current_checkpoint->last_pos + current_checkpoint->direction;
+        current_checkpoint->current_track_record = push_list(current_checkpoint->current_track_record, current_checkpoint->last_pos);
         current_checkpoint->end_reached = (current_checkpoint->last_pos == maze.end[0] * maze.col_count + maze.end[1]);
     }
 
