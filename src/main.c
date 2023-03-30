@@ -27,7 +27,7 @@ int main(void)
     printf("\nfst: Entry[%d][%d]\t-->\t End[%d][%d]\n", fst_maze.entry[0], fst_maze.entry[1], fst_maze.end[0], fst_maze.end[1]);
     // printf("\nsnd: Entry[%d][%d]\t-->\t End[%d][%d]\n", snd_maze.entry[0], snd_maze.entry[1], snd_maze.end[0], snd_maze.end[1]);
 
-    int thread_limit_count = 10;
+    int thread_limit_count = 6;
 
     checkpoint_t fst_checkpoint;
     fst_checkpoint.current_track_record = create_node_list(fst_maze.entry[0] * fst_maze.col_count + fst_maze.entry[1]);
@@ -41,7 +41,7 @@ int main(void)
     fst_checkpoint.meet_point_reached = false;
     bool fst_thereis_meetup = true; // this is for the printing
 
-    fst_checkpoint.limited_threads = false;
+    fst_checkpoint.limited_threads = true;
     fst_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(fst_checkpoint.lock, NULL);
 

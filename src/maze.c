@@ -182,21 +182,6 @@ void *solveMaze_threaded(void *checkpoint)
     bool is_left_thread_launched;
     bool is_right_thread_launched;
 
-    if (current_checkpoint->limited_threads)
-    {
-        is_up_thread_launched = false;
-        is_down_thread_launched = false;
-        is_left_thread_launched = false;
-        is_right_thread_launched = false;
-    }
-    else
-    {
-        is_up_thread_launched = true;
-        is_down_thread_launched = true;
-        is_left_thread_launched = true;
-        is_right_thread_launched = true;
-    }
-
     int *constructed_path;
     int constructed_path_length;
     bool does_lead_to_end;
@@ -222,6 +207,10 @@ void *solveMaze_threaded(void *checkpoint)
         next_move = current_checkpoint->last_pos + current_checkpoint->direction;
 
         /*check for any other possible ways*/
+        is_up_possible = false;
+        is_down_possible = false;
+        is_left_possible = false;
+        is_right_possible = false;
         if (current_checkpoint->direction != -maze.col_count)
         {
             is_up_possible = can_go_up(current_line, current_col, &maze, current_checkpoint->current_track_record);
@@ -237,6 +226,21 @@ void *solveMaze_threaded(void *checkpoint)
         if (current_checkpoint->direction != 1)
         {
             is_right_possible = can_go_right(current_line, current_col, &maze, current_checkpoint->current_track_record);
+        }
+
+        if (current_checkpoint->limited_threads)
+        {
+            is_up_thread_launched = false;
+            is_down_thread_launched = false;
+            is_left_thread_launched = false;
+            is_right_thread_launched = false;
+        }
+        else
+        {
+            is_up_thread_launched = true;
+            is_down_thread_launched = true;
+            is_left_thread_launched = true;
+            is_right_thread_launched = true;
         }
 
         /* if there is any way, fire up a thread following it */
@@ -290,14 +294,7 @@ void *solveMaze_threaded(void *checkpoint)
                 }
                 else
                 {
-                    /* otherwise, solve this maze part recursively */
                     is_up_thread_launched = false;
-                    /* in recursive mode, no need to make the son move on*/
-                    up_thread_checkpoint.last_pos = current_checkpoint->last_pos;
-                    solveMaze_rec(&maze,
-                                  &(up_thread_checkpoint.current_track_record),
-                                  get_line(up_thread_checkpoint.last_pos, maze.col_count),
-                                  get_colomn(up_thread_checkpoint.last_pos, maze.col_count));
                 }
             }
             else
@@ -358,14 +355,7 @@ void *solveMaze_threaded(void *checkpoint)
                 }
                 else
                 {
-                    /* otherwise, solve this maze part recursively */
                     is_down_thread_launched = false;
-                    /* in recursive mode, no need to make the son move on*/
-                    down_thread_checkpoint.last_pos = current_checkpoint->last_pos;
-                    solveMaze_rec(&maze,
-                                  &(down_thread_checkpoint.current_track_record),
-                                  get_line(down_thread_checkpoint.last_pos, maze.col_count),
-                                  get_colomn(down_thread_checkpoint.last_pos, maze.col_count));
                 }
             }
             else
@@ -425,14 +415,7 @@ void *solveMaze_threaded(void *checkpoint)
                 }
                 else
                 {
-                    /* otherwise solve this maze part recursively */
                     is_left_thread_launched = false;
-                    /* in recursive mode, no need to make the son move on*/
-                    left_thread_checkpoint.last_pos = current_checkpoint->last_pos;
-                    solveMaze_rec(&maze,
-                                  &(left_thread_checkpoint.current_track_record),
-                                  get_line(left_thread_checkpoint.last_pos, maze.col_count),
-                                  get_colomn(left_thread_checkpoint.last_pos, maze.col_count));
                 }
             }
             else
@@ -492,14 +475,7 @@ void *solveMaze_threaded(void *checkpoint)
                 }
                 else
                 {
-                    /*otherwise, solve this part of the maze recursively*/
                     is_right_thread_launched = false;
-                    /* in recursive mode, no need to make the son move on*/
-                    right_thread_checkpoint.last_pos = current_checkpoint->last_pos;
-                    solveMaze_rec(&maze,
-                                  &(right_thread_checkpoint.current_track_record),
-                                  get_line(right_thread_checkpoint.last_pos, maze.col_count),
-                                  get_colomn(right_thread_checkpoint.last_pos, maze.col_count));
                 }
             }
             else
@@ -516,6 +492,16 @@ void *solveMaze_threaded(void *checkpoint)
             {
                 /*if the launched thread flag is on, join the thread*/
                 pthread_join(up_thread, NULL);
+            }
+            else
+            {
+                /* otherwise, solve this maze part recursively */
+                /* in recursive mode, no need to make the son move on*/
+                up_thread_checkpoint.last_pos = current_checkpoint->last_pos;
+                solveMaze_rec(&maze,
+                              &(up_thread_checkpoint.current_track_record),
+                              get_line(up_thread_checkpoint.last_pos, maze.col_count),
+                              get_colomn(up_thread_checkpoint.last_pos, maze.col_count));
             }
             if (current_checkpoint->limited_threads && is_up_thread_launched)
             {
@@ -572,6 +558,16 @@ void *solveMaze_threaded(void *checkpoint)
                 /*if the launched thread flag is on, join the thread*/
                 pthread_join(down_thread, NULL);
             }
+            else
+            {
+                /* otherwise, solve this maze part recursively */
+                /* in recursive mode, no need to make the son move on*/
+                down_thread_checkpoint.last_pos = current_checkpoint->last_pos;
+                solveMaze_rec(&maze,
+                              &(down_thread_checkpoint.current_track_record),
+                              get_line(down_thread_checkpoint.last_pos, maze.col_count),
+                              get_colomn(down_thread_checkpoint.last_pos, maze.col_count));
+            }
             if (current_checkpoint->limited_threads && is_down_thread_launched)
             {
                 /*signal the free_threads_counter value */
@@ -624,6 +620,16 @@ void *solveMaze_threaded(void *checkpoint)
             {
                 /*if the launched thread flag is on, join the thread*/
                 pthread_join(left_thread, NULL);
+            }
+            else
+            {
+                /* otherwise, solve this maze part recursively */
+                /* in recursive mode, no need to make the son move on*/
+                left_thread_checkpoint.last_pos = current_checkpoint->last_pos;
+                solveMaze_rec(&maze,
+                              &(left_thread_checkpoint.current_track_record),
+                              get_line(left_thread_checkpoint.last_pos, maze.col_count),
+                              get_colomn(left_thread_checkpoint.last_pos, maze.col_count));
             }
             if (current_checkpoint->limited_threads && is_left_thread_launched)
             {
@@ -679,6 +685,16 @@ void *solveMaze_threaded(void *checkpoint)
             {
                 /*if the launched thread flag is on, join the thread*/
                 pthread_join(right_thread, NULL);
+            }
+            else
+            {
+                /* otherwise, solve this maze part recursively */
+                /* in recursive mode, no need to make the son move on*/
+                right_thread_checkpoint.last_pos = current_checkpoint->last_pos;
+                solveMaze_rec(&maze,
+                              &(right_thread_checkpoint.current_track_record),
+                              get_line(right_thread_checkpoint.last_pos, maze.col_count),
+                              get_colomn(right_thread_checkpoint.last_pos, maze.col_count));
             }
             if (current_checkpoint->limited_threads && is_right_thread_launched)
             {
