@@ -1,20 +1,32 @@
 #include "../headers/maze.h"
 
-void findKeyPoint(maze_t *playground, int entrySymbol, int endSymbol)
+void findStart(maze_t *playground)
 {
     for (int i = 0; i < playground->row_count; i++)
     {
         for (int j = 0; j < playground->col_count; j++)
         {
-            if (playground->grid[i][j] == entrySymbol)
+            if (playground->grid[i][j] == 2)
             {
                 playground->entry[0] = i;
                 playground->entry[1] = j;
+                return;
             }
-            if (playground->grid[i][j] == endSymbol)
+        }
+    }
+}
+
+void findEnd(maze_t *playground)
+{
+    for (int i = 0; i < playground->row_count; i++)
+    {
+        for (int j = 0; j < playground->col_count; j++)
+        {
+            if (playground->grid[i][j] == 3)
             {
                 playground->end[0] = i;
                 playground->end[1] = j;
+                return;
             }
         }
     }
@@ -188,7 +200,6 @@ void *solveMaze_threaded(void *checkpoint)
 
     while (!(current_checkpoint->end_reached))
     {
-
         if (current_checkpoint->limited_threads)
         {
             /* if the threads are limited, suppose that at the beginning no threads are launched */
@@ -216,11 +227,6 @@ void *solveMaze_threaded(void *checkpoint)
         /* calc the next move to see if any of the possible ways is also the parent way */
         next_move = current_checkpoint->last_pos + current_checkpoint->direction;
 
-        is_up_possible = false;
-        is_down_possible = false;
-        is_left_possible = false;
-        is_right_possible = false;
-       
         /*check for any other possible ways*/
         if (current_checkpoint->direction != -maze.col_count)
         {
@@ -744,8 +750,6 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     assert(p_playground != NULL);
     assert(*p_visitedNodes != NULL);
 
-    // printf("> on recursive call current_line =%d, current_col = %d\n", current_line, current_col);
-
     // make sure that we are not into a wall
     if (p_playground->grid[current_line][current_col] == 0)
         return;
@@ -780,7 +784,6 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     if (current_line + 1 < p_playground->row_count)
     {
         visitedNodesCopy = copy_list(*p_visitedNodes);
-        /*call recursively the function with a new list and a new position*/
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line + 1, current_col);
 
         copySize = getLength(visitedNodesCopy);
@@ -814,7 +817,6 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     if (current_col + 1 < p_playground->col_count)
     {
         visitedNodesCopy = copy_list(*p_visitedNodes);
-        /*call recursively the function with a new list and a new position*/
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line, current_col + 1);
 
         copySize = getLength(visitedNodesCopy);
@@ -848,7 +850,6 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     if (current_line - 1 >= 0)
     {
         visitedNodesCopy = copy_list(*p_visitedNodes);
-        /*call recursively the function with a new list and a new position*/
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line - 1, current_col);
 
         copySize = getLength(visitedNodesCopy);
@@ -882,7 +883,6 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     if (current_col - 1 >= 0)
     {
         visitedNodesCopy = copy_list(*p_visitedNodes);
-        /*call recursively the function with a new list and a new position*/
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line, current_col - 1);
 
         copySize = getLength(visitedNodesCopy);
