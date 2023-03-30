@@ -228,6 +228,11 @@ void *solveMaze_threaded(void *checkpoint)
         next_move = current_checkpoint->last_pos + current_checkpoint->direction;
 
         /*check for any other possible ways*/
+        is_up_possible = false;
+        is_down_possible = false;
+        is_left_possible = false;
+        is_right_possible = false;
+        
         if (current_checkpoint->direction != -maze.col_count)
         {
             is_up_possible = can_go_up(current_line, current_col, &maze, current_checkpoint->current_track_record);
