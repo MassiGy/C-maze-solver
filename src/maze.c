@@ -292,6 +292,7 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* otherwise, solve this maze part recursively */
                     is_up_thread_launched = false;
+                    /* in recursive mode, no need to make the son move on*/
                     up_thread_checkpoint.last_pos = current_checkpoint->last_pos;
                     solveMaze_rec(&maze,
                                   &(up_thread_checkpoint.current_track_record),
@@ -359,6 +360,7 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* otherwise, solve this maze part recursively */
                     is_down_thread_launched = false;
+                    /* in recursive mode, no need to make the son move on*/
                     down_thread_checkpoint.last_pos = current_checkpoint->last_pos;
                     solveMaze_rec(&maze,
                                   &(down_thread_checkpoint.current_track_record),
@@ -425,6 +427,7 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /* otherwise solve this maze part recursively */
                     is_left_thread_launched = false;
+                    /* in recursive mode, no need to make the son move on*/
                     left_thread_checkpoint.last_pos = current_checkpoint->last_pos;
                     solveMaze_rec(&maze,
                                   &(left_thread_checkpoint.current_track_record),
@@ -491,6 +494,7 @@ void *solveMaze_threaded(void *checkpoint)
                 {
                     /*otherwise, solve this part of the maze recursively*/
                     is_right_thread_launched = false;
+                    /* in recursive mode, no need to make the son move on*/
                     right_thread_checkpoint.last_pos = current_checkpoint->last_pos;
                     solveMaze_rec(&maze,
                                   &(right_thread_checkpoint.current_track_record),
@@ -735,6 +739,7 @@ void *solveMaze_threaded(void *checkpoint)
 
                 // move the head to the end
                 current_checkpoint->path_to_meet_point = copy_list(current_checkpoint->current_track_record);
+                /* push the last pos, then make the head to the end with pop(), so as the visited nodes can be visited again.  */
                 current_checkpoint->current_track_record = push_list(current_checkpoint->current_track_record, current_checkpoint->last_pos);
                 current_checkpoint->current_track_record = pop_list(current_checkpoint->current_track_record);
 
