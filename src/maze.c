@@ -232,7 +232,7 @@ void *solveMaze_threaded(void *checkpoint)
         is_down_possible = false;
         is_left_possible = false;
         is_right_possible = false;
-        
+
         if (current_checkpoint->direction != -maze.col_count)
         {
             is_up_possible = can_go_up(current_line, current_col, &maze, current_checkpoint->current_track_record);
@@ -785,137 +785,86 @@ void solveMaze_rec(maze_t *p_playground, list_t **p_visitedNodes, int current_li
     list_t *visitedNodesCopy;
     int *array;
     int copySize;
+    bool end_reached = false;
 
-    if (current_line + 1 < p_playground->row_count)
+    if (current_line + 1 < p_playground->row_count && !end_reached)
     {
+        /* pass a copy of the current track record, to the next recursive call*/
         visitedNodesCopy = copy_list(*p_visitedNodes);
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line + 1, current_col);
 
         copySize = getLength(visitedNodesCopy);
         array = listToArray(visitedNodesCopy, copySize);
-
-        bool endReached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
-
+        /* see if the constructed path from the recursive call leads to the end */
+        end_reached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
         // destroy the array to prevent memory leaks
         free(array);
         array = NULL;
-
-        if (endReached)
-        {
-
-            // destroy the previous *p_visitedNodes list to prevent memory leaks
-            destroy_list(*p_visitedNodes);
-            *p_visitedNodes = NULL;
-
-            // change the *p_visitedNodes list to the copy, since this one contains the path to the end
-            *p_visitedNodes = visitedNodesCopy;
-            return;
-        }
-        else
-        {
-            // destroy the copy if the end is not reached, it will be recreated at the next if statement
-            destroy_list(visitedNodesCopy);
-            visitedNodesCopy = NULL;
-        }
     }
 
-    if (current_col + 1 < p_playground->col_count)
+    if (current_col + 1 < p_playground->col_count && !end_reached)
     {
+        /* pass a copy of the current track record, to the next recursive call*/
         visitedNodesCopy = copy_list(*p_visitedNodes);
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line, current_col + 1);
 
         copySize = getLength(visitedNodesCopy);
         array = listToArray(visitedNodesCopy, copySize);
 
-        bool endReached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
-
+        /* see if the constructed path from the recursive call leads to the end */
+        end_reached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
         // destroy the array to prevent memory leaks
         free(array);
         array = NULL;
-
-        if (endReached)
-        {
-
-            // destroy the previous *p_visitedNodes list to prevent memory leaks
-            destroy_list(*p_visitedNodes);
-            *p_visitedNodes = NULL;
-
-            // change the *p_visitedNodes list to the copy, since this one contains the path to the end
-            *p_visitedNodes = visitedNodesCopy;
-            return;
-        }
-        else
-        {
-            // destroy the copy if the end is not reached, it will be recreated at the next if statement
-            destroy_list(visitedNodesCopy);
-            visitedNodesCopy = NULL;
-        }
     }
 
-    if (current_line - 1 >= 0)
+    if (current_line - 1 >= 0 && !end_reached)
     {
+        /* pass a copy of the current track record, to the next recursive call*/
         visitedNodesCopy = copy_list(*p_visitedNodes);
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line - 1, current_col);
 
         copySize = getLength(visitedNodesCopy);
         array = listToArray(visitedNodesCopy, copySize);
 
-        bool endReached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
-
+        /* see if the constructed path from the recursive call leads to the end */
+        end_reached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
         // destroy the array to prevent memory leaks
         free(array);
         array = NULL;
-
-        if (endReached)
-        {
-
-            // destroy the previous *p_visitedNodes list to prevent memory leaks
-            destroy_list(*p_visitedNodes);
-            *p_visitedNodes = NULL;
-
-            // change the *p_visitedNodes list to the copy, since this one contains the path to the end
-            *p_visitedNodes = visitedNodesCopy;
-            return;
-        }
-        else
-        {
-            // destroy the copy if the end is not reached, it will be recreated at the next if statement
-            destroy_list(visitedNodesCopy);
-            visitedNodesCopy = NULL;
-        }
     }
 
-    if (current_col - 1 >= 0)
+    if (current_col - 1 >= 0 && !end_reached)
     {
+        /* pass a copy of the current track record, to the next recursive call*/
         visitedNodesCopy = copy_list(*p_visitedNodes);
         solveMaze_rec(p_playground, &visitedNodesCopy, current_line, current_col - 1);
 
         copySize = getLength(visitedNodesCopy);
         array = listToArray(visitedNodesCopy, copySize);
 
-        bool endReached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
-
+        /* see if the constructed path from the recursive call leads to the end */
+        end_reached = liniar_search_array(array, copySize, p_playground->end[0] * p_playground->col_count + p_playground->end[1]);
         // destroy the array to prevent memory leaks
         free(array);
         array = NULL;
+    }
 
-        if (endReached)
-        {
+    if (end_reached)
+    {
+        // destroy the previous *p_visitedNodes list to prevent memory leaks
+        destroy_list(*p_visitedNodes);
+        *p_visitedNodes = NULL;
 
-            // destroy the previous *p_visitedNodes list to prevent memory leaks
-            destroy_list(*p_visitedNodes);
-            *p_visitedNodes = NULL;
-
-            // change the *p_visitedNodes list to the copy, since this one contains the path to the end
-            *p_visitedNodes = visitedNodesCopy;
-            return;
-        }
-        else
-        {
-            // destroy the copy if the end is not reached, it will be recreated at the next if statement
-            destroy_list(visitedNodesCopy);
-            visitedNodesCopy = NULL;
-        }
+        // change the *p_visitedNodes list to the copy, since this one contains the path to the end
+        *p_visitedNodes = visitedNodesCopy;
+        return;
+    }
+    else
+    {
+        // destroy the copy if the end is not reached, it will be recreated at the next if statement
+        destroy_list(visitedNodesCopy);
+        visitedNodesCopy = NULL;
     }
 
     return;
