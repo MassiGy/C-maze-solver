@@ -8,7 +8,6 @@
  * When the threads are not limited, it goes through the meet point and then to the end, but it goes way beyond the end.
  * When the threads are limited, and its not only recursive, it goes through the meet point and then to the end, but it goes way beyond the end. (unless you give it
  * a small limit count, which will cause a seg fault.)
- *
  */
 
 int main(void)

@@ -5,52 +5,18 @@
 0	1	0	1	0	4	0	
 0	1	0	5	1	1	0	
 0	0	0	0	0	0	0	
-Entrée : [3][1]
-Sortie : [3][3]
-Entrée : [5][3]
-Sortie : [3][3]
-current_id = 0	,current_entry_symbol = 3	, current_end_symbol = 4
-~~~~~~~~~~~~~~~~Printing the maze: 
-0	0	0	0	0	0	0	
-0	6	1	1	1	1	0	
-0	1	0	0	0	0	0	
-0	3	1	2	0	1	0	
-0	1	0	1	0	4	0	
-0	1	0	5	1	1	0	
-0	0	0	0	0	0	0	
-~~~~~~~~~~~~~~~~Printing the current_checkpoint->p_maze : 
-0	0	0	0	0	0	0	
-0	6	1	1	1	1	0	
-0	1	0	0	0	0	0	
-0	3	1	2	0	1	0	
-0	1	0	1	0	4	0	
-0	1	0	5	1	1	0	
-0	0	0	0	0	0	0	
-~~~~~~~~~~~~~~~~Printing the current track record 
-0x7f6d44000cd0 -> 22
-0x7f6d44000cf0 -> 23
-0x7f6d38000b70 -> 24
-~~~~~~~~~~~~~~~~~~~~~~~~ Printing the path to meet point
-0x7f6d44000e30 -> 22
-0x561bc87f27b0 -> 23
-0x7f6d3c000b90 -> 24
-~~~~~~~~~~~~~~~~~~~~~~~ Printing the the current_track record again 
-0x7f6d38000b70 -> 24
-~~~~~~~~~~~~~~~~~~~~~~~~ Printing the path to meet point again
-0x7f6d44000e30 -> 22
-0x561bc87f27b0 -> 23
-0x7f6d3c000b90 -> 24
-~~~~~~~~~~~~~~~~~~~~~~~ Printing end  value 
-end[4][5]
-~~~~~~~~~~~~~~~~~~~~~~~
+
+fst: Entry[3][1]	-->	 End[3][3]
+~~~~~~~~~~~~~~
+0x7f5a44000e30 -> 22
+0x559b8553d7b0 -> 23
+0x7f5a3c000b90 -> 24
 ############
-0x7f6d30000b90 -> 24
-0x7f6d30000bb0 -> 31
-0x7f6d30000bd0 -> 38
-0x7f6d30000bf0 -> 39
-0x7f6d30000c10 -> 40
-0x7f6d30000c30 -> 33
-0x7f6d28000bb0 -> 26
-0x7f6d28000c00 -> 19
-@@@@@@@@@@@@@@@@@@@@@@@ Player 2 @@@@@@@@@
-0x561bc87f2800 -> 38
+0x7f5a28000b90 -> 24
+0x7f5a28000bb0 -> 31
+0x7f5a28000bd0 -> 38
+0x7f5a28000bf0 -> 39
+0x7f5a28000c10 -> 40
+0x7f5a28000c30 -> 33
+0x7f5a2c000c60 -> 26
+0x7f5a2c000c80 -> 19
