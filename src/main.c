@@ -3,6 +3,9 @@
 
 int main(void)
 {
+    /**
+    NOTE: if you get seg faults when you are in limited threads mode, try increasing the limit of threads that you've set. 
+    */
 
     maze_t maze;
     loadMaze(&maze);
@@ -19,11 +22,11 @@ int main(void)
     start_checkpoint.p_maze = &maze;
     start_checkpoint.last_pos = maze.entry[0] * maze.col_count + maze.entry[1];
 
-    start_checkpoint.limited_threads = false;
+    start_checkpoint.limited_threads = true;
     start_checkpoint.lock = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(start_checkpoint.lock, NULL);
 
-    int limit = 3;
+    int limit = 6;
     start_checkpoint.p_free_threads_count = &limit;
 
     solveMaze_threaded(&start_checkpoint);

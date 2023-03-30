@@ -1,0 +1,22 @@
+0	0	0	0	0	0	0	
+0	1	0	1	1	3	0	
+0	1	0	1	0	0	0	
+0	2	1	1	1	1	0	
+0	0	0	0	0	1	0	
+0	1	1	1	1	1	0	
+0	0	0	0	0	0	0	
+
+ Entry[3][1]	-->	 End[1][5]
+on right check (0x7ffdb028058c) => (5)
+on up check (0x7ffdb028058c) => (4)
+on right check (0x7ffdb028058c) => (3)
+on right join (0x7ffdb028058c) => (4)
+on up join (0x7ffdb028058c) => (5)
+on right join (0x7ffdb028058c) => (6)
+0x7f845c000b90 -> 22
+0x7f845c000bb0 -> 23
+0x7f845c000bd0 -> 24
+0x7f845c000bf0 -> 17
+0x7f845c000c10 -> 10
+0x7f845c000c30 -> 11
+0x7f8460000b70 -> 12
