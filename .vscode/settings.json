@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.ejs": "html",
-        "*.sql": "sql",
-        "*.rmd": "markdown",
-        "maze.h": "c",
-        "main.h": "c"
-    }
-}
