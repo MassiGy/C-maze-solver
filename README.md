@@ -52,7 +52,6 @@ python3 generateur.py [lignes] [colonnes]
 où **lignes** et **colonnes** sont respectivement le nombre de lignes et de colonnes que doit contenir l'instance produite par le générateur.
 
 
-
 ## Utilisation: 
 
 - Générer le labyrinthe avec python, comme expliqué ci-dessus.
